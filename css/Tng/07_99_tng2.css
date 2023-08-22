@@ -1,0 +1,42 @@
+.header {
+	width: 600px;
+}
+
+.border {
+	border: 1px solid #000;
+	width: 500px;
+	background-color: #000;
+}
+
+.fc-white {
+	color: #fff;
+}
+
+.fc-blue {
+	color: blue;
+}
+
+.fc-black {
+	color: #000;
+}
+
+.fc-orange {
+	color: orange;
+}
+
+h2 {
+	color: red;
+}
+
+.header {
+	padding: 10px;
+}
+
+.chk-padding {
+	padding: 5px;
+}
+
+.time {
+	font-size: 0.7em;
+}
+

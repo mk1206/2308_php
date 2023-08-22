@@ -1,0 +1,14 @@
+.cook1 {
+	list-style-type: none;
+	list-style-type: decimal;
+	list-style-type: lower-alpha;
+	/* https://developer.mozilla.org/en-US/ 참고 */
+}
+
+.cook2 {
+	list-style-position: inside;
+}
+
+.cook3 {
+	list-style-image: url(../../html/img/icon.png);
+}
