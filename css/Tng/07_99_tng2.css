@@ -1,31 +1,5 @@
-.header {
+.container {
 	width: 600px;
-}
-
-.border {
-	border: 1px solid #000;
-	width: 500px;
-	background-color: #000;
-}
-
-.fc-white {
-	color: #fff;
-}
-
-.fc-blue {
-	color: blue;
-}
-
-.fc-black {
-	color: #000;
-}
-
-.fc-orange {
-	color: orange;
-}
-
-h2 {
-	color: red;
 }
 
 .header {
@@ -36,7 +10,39 @@ h2 {
 	padding: 5px;
 }
 
-.time {
-	font-size: 0.7em;
+.bc-black {
+	background-color: #000;
 }
 
+.fc-white {
+	color: #fff;
+}
+
+h2 {
+	color: red;
+}
+
+.fc-blue {
+	color: blue;
+}
+
+.fc-orange {
+	color: orange;
+}
+
+.border {
+	border: 1px solid #000;
+}
+
+p {
+	font-weight: 900;
+	margin: 0;
+}
+
+.test-center {
+	text-align: center;
+}
+
+.small {
+	font-size: 0.7em;
+}
