@@ -1,0 +1,31 @@
+img {
+	height: 700px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	box-shadow: 5px 5px 30px 2px #000;
+}
+
+section {
+	width: 800px;
+	height: 500px;
+
+}
+
+article {
+	float: left;
+	width: 350px;
+	height: 200px;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+footer {
+	clear: both;
+	background-color: #000;
+	height: 50px;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+}
+

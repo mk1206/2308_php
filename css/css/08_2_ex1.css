@@ -1,0 +1,39 @@
+div {
+	width: 200px;
+	height: 20px;
+	margin: 5px;
+}
+
+.div-1 {
+	border-style: none;
+}
+
+.div-2 {
+	border-style: solid;
+	border-color: blue;
+	border-width: 5px;
+}
+
+.div-3 {
+	border-style: dotted;
+	border-width: 5px 10;
+}
+
+.div-4 {
+	border-style: dashed;
+	border-width: 5px;
+}
+
+.div-5 {
+	border-style: double;
+	border-width: 5px;
+}
+
+.div-6 {
+	height: 200px;
+	border: 3px solid #000;
+	border-radius: 20px;
+	/* border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 20px; */
+}

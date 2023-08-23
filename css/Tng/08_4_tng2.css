@@ -1,0 +1,43 @@
+header, main, footer {
+	width: 1000px;
+}
+
+header {
+	background-color: aqua;
+	height: 100px;
+}
+
+.side_1 {
+	background-color: beige;
+	width: 200px;
+	height: 700px;
+	float: left;
+}
+
+article {
+	background-color: aquamarine;
+	width: 600px;
+	height: 700px;
+	float: left;
+}
+
+.side_2 {
+	background-color: blueviolet;
+	width: 200px;
+	height: 700px;
+	float: left;
+}
+
+footer {
+	background-color: brown;
+	height: 100px;
+	clear: both;
+}
+
+section {
+	float: left;
+	background-color: antiquewhite;
+	width: 150px;
+	height: 100px;
+	margin: 10px;
+}
