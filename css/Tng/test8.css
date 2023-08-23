@@ -29,3 +29,12 @@ footer {
 	line-height: 50px;
 }
 
+ul {
+	list-style-type: none;
+}
+
+li {
+	float: left;
+	background-color: #ccc;
+	padding: 10px 20px;
+}
