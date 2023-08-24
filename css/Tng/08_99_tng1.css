@@ -1,0 +1,51 @@
+section {
+	width: 800px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -350px 0px 0px -400px;
+	/* margin: auto; 자동으로 중앙정렬 */
+}
+
+article {
+	float: left;
+	width: 350px;
+	height: 200px;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+footer {
+	clear: both;
+	background-color: #000;
+	height: 60px;
+	color: #fff;
+	text-align: center;
+	line-height: 60px;
+}
+
+.art-1 {
+	background-image: url(../../html/img/doghome.png);
+	background-size: cover;
+	opacity: 0.8;
+}
+
+.art-2 {
+	background-image: url(../../html/img/dogfood.png);
+	background-size: cover;
+	opacity: 0.8;
+}
+
+.art-3 {
+	background-image: url(../../html/img/dogasdf.png);
+	background-size: cover;
+	opacity: 0.8;
+}
+
+.art-4 {
+	background-image: url(../../html/img/dogname.png);
+	background-size: cover;
+	opacity: 0.8;
+}

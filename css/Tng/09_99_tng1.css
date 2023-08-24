@@ -1,0 +1,38 @@
+body {
+	background-color: #000;
+}
+
+.container {
+	background: #fff url(../../html/img/pig.png) no-repeat right bottom / 70%;
+	width: 600px;
+	height: 800px;
+	margin: 0 auto;
+	padding: 15px;
+}
+
+h1 {
+	background-color: darkgreen;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+}
+
+h2 {
+	text-align: center;
+	font-weight: 700px;
+	font-style: italic;
+}
+
+.fc-red {
+	color: red;
+	font-size: 1.3em;
+	font-weight: bold;
+	text-indent: 1em;
+	line-height: 30px;
+}
+
+.fc-black {
+	line-height: 30px;
+	position: relative;
+	left: 80px;
+}

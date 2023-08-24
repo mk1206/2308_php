@@ -1,0 +1,33 @@
+.div {
+	position: relative;
+	border: 1px solid #000;
+	width: 500px;
+	height: 500px;
+}
+
+.div-1 {
+	position: absolute;
+	border: 1px solid #000;
+	width: 150px;
+	height: 150px;
+	left: 30px;
+	top: 30px;
+}
+
+.div-2 {
+	position: absolute;
+	border: 1px solid #000;
+	width: 150px;
+	height: 150px;
+	right: 100px;
+	top: 100px;
+}
+
+.div-3 {
+	position: absolute;
+	border: 1px solid #000;
+	width: 150px;
+	height: 150px;
+	left: 30px;
+	bottom: 50px;
+}
