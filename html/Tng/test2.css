@@ -1,0 +1,25 @@
+.p1 {
+	font-size: 1.2em;
+	font-weight: 900;
+}
+
+.p2 {
+	color: blue;
+	display: inline-block;
+}
+
+.span1 {
+	display: inline-block;
+	text-indent: 5em;
+}
+
+.span2 {
+	text-indent: 9.4em;
+}
+
+.p3 {
+	text-indent: 12em;
+	font-size: 0.9em;
+	background: url(../img/icon.png) no-repeat;
+	background-position: 150px;
+}
