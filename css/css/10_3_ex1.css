@@ -1,0 +1,63 @@
+a {
+	color: burlywood;
+}
+
+/* 들어가기 전 */
+a:link {
+	color: blueviolet;
+}
+
+/* 들어간 후 */
+a:visited {
+	color: blue
+}
+
+a:hover {
+	background-color: aqua;
+}
+
+#input-1:focus {
+	outline: none;
+	border-color: red;
+}
+
+/* 실행되는 순간 */
+#input-1:active {
+	border-color: yellow;
+}
+
+/* checked를 하면 인접한 형제태그에 효과를 부여 */
+input:checked + label {
+	color: orange;
+}
+
+#target-1:target {
+	background-color: red;
+}
+
+/* container 안에 n번째만 */
+.container :nth-child(4) {
+	color: yellow;
+}
+
+/* container 안에 p 중에 n번째 */
+.container p:nth-of-type(2) {
+	color: green;
+}
+
+.container :not(p) {
+	color: brown;
+}
+
+#label-2::after {
+	content: '중요';
+	color: aqua;
+}
+
+.korean-1::first-letter {
+	font-size: 3em;
+}
+
+.korean-2::first-line {
+	background-color: aquamarine;
+}

@@ -1,0 +1,19 @@
+/* 상위요소 하위요소 */
+header div span {
+	color: aqua;
+}
+
+/* 부모요소 > 하위요소 */
+header>span {
+	color: red;
+}
+
+/* 형제요소 + 형제요소 */
+main span+p {
+	color: blue;
+}
+
+/* 형제 요소 전체 */
+span~p {
+	color: blueviolet;
+}

@@ -1,0 +1,32 @@
+[target] {
+	color: green;
+}
+
+[target=daum] {
+	color: blue;
+}
+
+/* 속성 값이 포함되어 있는 */
+[class~=att_class] {
+	color: chocolate
+}
+
+/* 속성 값 일부가 일치하는 */
+[class*=att_class] {
+	color: brown;
+}
+
+/* 속성값과 일치하거나 속성값 다음에 -가 포함된 */
+[class|=att] {
+	color: yellowgreen;
+}
+
+/* 특정 속성 값으로 시작 */
+[class^=co] {
+	color: orange;
+}
+
+/* 특정 속성 값으로 끝 */
+[class$=k1] {
+	color: pink;
+}
