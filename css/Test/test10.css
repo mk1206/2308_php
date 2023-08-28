@@ -1,0 +1,96 @@
+/* * {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 500px;
+    margin: 30px auto;
+}
+
+.ul1 {
+    display: inline-block;
+    list-style-type: none;
+    box-shadow: 0px 5px 7px 3px #000;
+}
+
+li {
+    float: left;
+    border-right: 1px solid #000;
+}
+
+a {
+    background-color: lightgray;
+    color: #000;
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    font-size: 0.8em;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.cl6 {
+    border: none;
+}
+
+li:not(:last-child) a:hover {
+    background-color: gray;
+}
+
+.bc-red:hover {
+    background-color: red;
+    color: #fff;
+} */
+
+.container {
+    margin: 0 auto;
+    width: 550px;
+    height: 350px;
+    line-height: 35px;
+    background-image: url(../../html/img/pig.png);
+    background-size: cover;
+    font-weight: 700;
+}
+
+legend {
+    font-size: 40px;
+    color: palevioletred;
+}
+
+.id::before, .age::before, .span1::before {
+    content: '*';
+    color: red;
+}
+
+#id:focus, #age:focus, #text:focus {
+    border-color: red;
+    outline: none;
+}
+
+#id, #age, #text {
+    background: none;
+}
+
+input:checked + label {
+    color: red;
+}
+
+button {
+    position: relative;
+}
+
+button:hover::after {
+    content: '내용을 다시 한 번 확인해 주세요.';
+    background-color: #000;
+    color: #fff;
+    position: absolute;
+    width: 200px;
+    left: 55px;
+    top: 0;
+}
+
+.text {
+    vertical-align: top;
+}

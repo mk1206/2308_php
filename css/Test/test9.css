@@ -1,0 +1,31 @@
+body {
+    background-color: #000;
+}
+
+.container {
+    width: 600px;
+    height: 800px;
+    background: #fff url(../../html/img/pig.png) no-repeat right bottom/ 70%;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+h1 {
+    background-color: rgb(2, 98, 2);
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+}
+
+h2 {
+    font-style: italic;
+    text-align: center;
+}
+
+h3 {
+    color: red;
+}
+
+p {
+    text-indent: 3em;
+}
