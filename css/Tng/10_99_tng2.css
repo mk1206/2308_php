@@ -1,0 +1,55 @@
+.container {
+	width: 550px;
+	height: 350px;
+	line-height: 35px;
+	margin: 0px auto;
+	background-image: url(../../html/img/pig.png);
+	background-size: cover;
+	opacity: 0.8;
+	font-weight: 600;
+}
+
+.legend {
+	color: rgb(245, 126, 195);
+	font-size: 40px;
+	font-weight: 700;
+}
+
+.name::before, .age::before, .span-1::before {
+	content: '*';
+	color: red
+}
+
+#id:focus, #age:focus, #text:focus {
+	outline: none;
+	border-color: red;
+}
+
+input:checked + label {
+	color: red;
+}
+
+#id, #age, #text {
+	background: none;
+}
+
+button {
+	position: relative;
+}
+
+button:hover::after {
+	content: '내용을 다시 한 번 확인해 주세요.';
+	background-color: black;
+	color: #fff;
+	width: 300px;
+	font-size: 20px;
+	position: absolute;
+	top: 0px;
+	left: 55px;
+}
+
+.text-1 {
+	/* float: left;
+	margin: 0 6px; */
+	vertical-align: top;
+}

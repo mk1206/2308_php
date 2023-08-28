@@ -1,0 +1,15 @@
+.div1 {
+	width: 50vw;
+	height: 100px;
+	background-color: rgba(165, 42, 42, 0.7);
+}
+
+.div2 {
+	width: 50vw;
+	background-color: rgba(146, 233, 32, 0.7);
+}
+
+.div3 {
+	width: 50%;
+	background-color: rgba(124, 124, 241, 0.7);
+}
