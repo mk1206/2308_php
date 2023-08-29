@@ -1,0 +1,95 @@
+/* 방법1 */
+div {
+	margin: 5px;
+}
+
+.container {
+	width: 500px;
+	height: 500px;
+	background-color: lightgray;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px;
+}
+
+.div-1, .div-2 {
+	width: 48%;
+	height: 31%;
+	border: 1px solid #000;
+	background-color: lightblue;
+	display: flex;
+	box-sizing: border-box;
+}
+
+.div-3 {
+	width: 100%;
+	height: 31%;
+	border: 1px solid #000;
+	background-color: lightblue;
+}
+
+.div-4 {
+	width: 48%;
+	height: 31%;
+	border: 1px solid #000;
+	background-color: lightblue;
+	box-sizing: border-box;
+}
+
+.div-5, .div-6 {
+	width: 100%;
+	height: 50%;
+	border: 1px solid #000;
+	background-color: lightblue;
+	box-sizing: border-box;
+}
+
+.div {
+	width: 48%;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+/* 방법2 */
+/* .container {
+	width: 500px;
+	height: 500px;
+	padding: 10px;
+	background-color: gray;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.flex-row {
+	display: flex;
+	width: 100%;
+	height: 32%;
+	justify-content: space-between;
+}
+
+.item {
+	border: 1px solid #000;
+	background-color: aquamarine;
+	width: 49%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.item-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: transparent;
+	border: none;
+}
+
+.col-2 {
+	width: 100%;
+	height: 47%;
+}
+
+.row-1 {
+	width: 100%;
+} */

@@ -8,12 +8,19 @@
 	flex-wrap: wrap; */
 	flex-flow: row wrap;
 	/* justify-content: space-start; 기본값 */
-	align-items: flex-end;
+	/* align-items: stretch */
+	align-content: space-between;
 }
 
 .item {
-	width: 15vw;
+	width: 150px;
 	height: 15vh;
 	background-color: skyblue;
 	border: 1px solid #000;
+	box-sizing: border-box;
+}
+
+.item2 {
+	font-size: 30px;
+	align-self: flex-end;
 }

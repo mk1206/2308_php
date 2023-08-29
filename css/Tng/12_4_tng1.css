@@ -1,0 +1,37 @@
+.container {
+	background-color: gray;
+	margin: 10px;
+	width: 60vw;
+	height: 60vh;
+}
+
+div {
+	width: 450px;
+	height: 150px;
+}
+
+.item {
+	width: 150px;
+	height: 150px;
+	background-color: skyblue;
+	border: 1px solid #000;
+	box-sizing: border-box;
+	float: left;
+}
+
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
+}
+
+.div_center {
+	width: 150px;
+	height: 150px;
+	background-color: skyblue;
+	border: 1px solid #000;
+	box-sizing: border-box;
+	margin: 0 auto;
+}
