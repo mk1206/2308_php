@@ -1,5 +1,5 @@
 /* 방법1 */
-div {
+/* div {
 	margin: 5px;
 }
 
@@ -49,10 +49,10 @@ div {
 	display: flex;
 	flex-direction: column;
 	margin: 0;
-}
+} */
 
 /* 방법2 */
-/* .container {
+.container {
 	width: 500px;
 	height: 500px;
 	padding: 10px;
@@ -92,4 +92,4 @@ div {
 
 .row-1 {
 	width: 100%;
-} */
+}
