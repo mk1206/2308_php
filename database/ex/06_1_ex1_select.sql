@@ -95,7 +95,9 @@ FROM titles
 WHERE to_date >= 20230901
 GROUP BY title;
 -- 하나만
-SELECT COUNT(*) FROM titles WHERE title = 'Assistant Engineer';
+SELECT COUNT(*)
+FROM titles
+WHERE title = 'Assistant Engineer';
 
 -- 속성명에 "AS"를 이용하여 별칭을 줄 수 있습니다.
 SELECT title, COUNT(title) AS cnt
@@ -134,11 +136,6 @@ WHERE emp_no = (
 	FROM dept_manager
 	WHERE to_date >= 20230901
 		AND dept_no = 'd002');
-
-SELECT emp_no
-FROM dept_manager
-WHERE to_date >= 20230901
-	AND dept_no = 'd002';
 	
 -- 현재 급여가 가장 높은 사원의 사번과 풀네임을 출력
 SELECT emp_no, CONCAT(first_name, ' ', last_name) AS full_name
