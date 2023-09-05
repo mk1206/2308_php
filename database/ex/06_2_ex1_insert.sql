@@ -18,7 +18,7 @@ VALUES (
 	, 'M'
 	, 20230904);
 	
-SELECT * FROM employees WHERE emp_no >= 500000
+SELECT * FROM employees WHERE emp_no >= 500000;
 
 -- 500,000번 사원의 급여 데이터를 삽입
 INSERT INTO salaries (
