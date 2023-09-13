@@ -68,16 +68,36 @@
 // 이 문자열의 모든 숫자를 더해주세요.
 // 예) "3421"일 경우, 3+4+2+1해서 10이 리턴 되는 함수
 
+// 배열로
+// function my_sum($str){
+// 	$j = 0;
+// 	$arr = str_split($str);
+// 	foreach($arr as $key){
+// 		$j += $key;
+// 	}
+// 	return $j;
+// }
+// echo my_sum("134");
 
-function my_sum($str){
-	$j = 0;
-	$arr = str_split($str);
-	foreach($arr as $key){
-		$j += $key;
-	}
-	return $j;
-}
+// function my_sum($str){
+// 	$arr = str_split($str);
+// 	return array_sum($arr);
+// }
+// echo my_sum("134");
 
-echo my_sum("3421");
+// 문자열 길이로
+// $str = "3145";
+// function my_test(string $str){
+// 	$len = mb_strlen($str);
+// 	$sum = 0;
+// 	for($idx = 0; $idx <= $len - 1; $idx++){
+// 		$sum += (int)mb_substr($str, $idx, 1);
+// 	}
+// 	return $sum;
+// }
+
+// echo my_test($str);
+
+
 
 ?>
