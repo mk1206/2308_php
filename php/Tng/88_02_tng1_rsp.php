@@ -134,4 +134,15 @@
 // echo food("비빔밥");
 
 // php 88_02_tng1_rsp.php
+
+// random으로 뽑으면 배열에서 제거
+
+$rand = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+for($i = 0; $i < 3; $i++){
+	$array = array_rand($rand);
+	echo $rand[$array];
+	unset($rand[$array]);
+	print_r($rand);
+}
 ?>
