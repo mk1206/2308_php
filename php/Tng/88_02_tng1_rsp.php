@@ -60,31 +60,78 @@
 // 정답일 경우 "정답" 출력, 끝
 // 5번의 기회를 다 썼을 경우 정답과 "실패" 출력
 
-// $arr = ["rock", "scissor", "paper"];
-// $input = trim(fgets(STDIN));
-$num = rand(1, 100);
-$i = 0;
+// $num = rand(1, 100);
+// $i = 0;
 
-while($i < 5){
-	$i++;
-	echo "입력값 :";
-	$input = trim(fgets(STDIN));
-	if($input == $num){
-		echo "\n----------정답----------\n";
-		break;
-	}
-	else if($input > $num){
-		echo "down\n\n";
-	}
-	else if($input < $num){
-		echo "up\n\n";
-	}
-	if($i == 5){
-		echo "실패\n";
-		echo "정답은: {$num}\n";
-	}
-}
+// while($i < 5){
+// 	$i++;
+// 	echo "입력값 :\n";
+// 	echo $num;
+// 	$input = trim(fgets(STDIN));
+// 	if(is_numeric($input)){
+// 		if($input == $num){
+// 			echo "\n----------정답----------\n";
+// 			break;
+// 		}
+// 		else if($input > $num){
+// 			echo "down\n\n";
+// 		}
+// 		else if($input < $num){
+// 			echo "up\n\n";
+// 		}
+// 		if($i == 5){
+// 			echo "실패\n";
+// 			echo "정답은: {$num}\n";
+// 		}
+// 	}
+// 	else{
+// 		echo "문자열을 입력함";
+// 		break;
+// 	}
+// }
+
+// 반복문을 이용하여 숫자를 1~10까지 출력
+// for($i = 1; $i <= 10; $i++){
+// 	echo "{$i}\n";
+// }
+
+// 구구단 8단 출력
+// for($i = 1; $i < 10; $i++){
+// 	$mul = 8*$i;
+// 	echo "8 X {$i} = {$mul}\n";
+// }
+
+// 구구단 19단 출력
+// for($i = 1; $i < 10; $i++){
+// 	$mul = 19*$i;
+// 	echo "19 X {$i} = {$mul}\n";
+// }
+
+// 두 숫자를 더해주는 함수
+// function sum($i, $j){
+// 	$sum = $i + $j;
+// 	return $sum;
+// }
 	
+// echo sum(11, 6);
+
+// 짜장면이면 중식, 비빔밥이면 한식, 그외는 양식으로 출력
+
+// function food($menu){
+// 	switch($menu){
+// 		case "짜장면":
+// 			echo "중식";
+// 			break;
+// 		case "비빔밥":
+// 			echo "한식";
+// 			break;
+// 		default:
+// 			echo "양식";
+// 			break;
+// 	}
+// }
+
+// echo food("비빔밥");
 
 // php 88_02_tng1_rsp.php
 ?>
