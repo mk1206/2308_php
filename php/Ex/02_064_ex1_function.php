@@ -48,10 +48,26 @@
 
 // 가변 파라미터
 // php-5.6 이상 가능
-function my_args_param(...$items){
-	echo $items[1];
+// function my_args_param(...$items){
+// 	echo $items[1];
+// }
+
+// my_args_param("a", "b", "c");
+
+// 레퍼런스 파라미터
+function test1( $str ) {
+	$str = "함수 test1";
+	return $str;
 }
 
-my_args_param("a", "b", "c");
+function test2( &$s ) {
+	$s = "함수 test2";
+	return $s;
+}
+
+$str = "???";
+$result = test2( $str );
+echo $str, "\n";
+echo $result;
 
 ?>
