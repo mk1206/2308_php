@@ -16,12 +16,12 @@ my_db_conn($conn);
 // 	." , gender "
 // 	." , hire_date) "
 // ." VALUES ( "
-// 	." :emp_no "
-// 	." , :birth_date "
-// 	." , :first_name "
-// 	." , :last_name "
-// 	." , :gender "
-// 	." , :hire_date )";
+// 	." :emp_no"
+// 	." , :birth_date"
+// 	." , :first_name"
+// 	." , :last_name"
+// 	." , :gender"
+// 	." , :hire_date)";
 
 // $arr_ps = [
 //     ":emp_no" => 500001
@@ -40,7 +40,7 @@ my_db_conn($conn);
 
 // db_destroy_conn($conn);
 
-// ------------2번------------
+// // ------------2번------------
 // $sql = " UPDATE employees "
 //     ." SET first_name= '둘리', last_name= '호잇' "
 //     ." WHERE emp_no = :emp_no ";
@@ -57,7 +57,7 @@ my_db_conn($conn);
 
 // db_destroy_conn($conn);
 
-// ------------3번------------
+// // ------------3번------------
 // $sql = " SELECT "
 //     ." * "
 //     ." FROM "
@@ -77,27 +77,19 @@ my_db_conn($conn);
 
 // db_destroy_conn($conn);
 
-// ------------4번------------
-$sql = " DELETE from employees "
-    ." WHERE emp_no = :emp_no ";
+// // ------------4번------------
+// $sql = " DELETE from employees "
+//     ." WHERE emp_no = :emp_no ";
 
-$arr_ps = [
-    ":emp_no" => 500001
-];
+// $arr_ps = [
+//     ":emp_no" => 500001
+// ];
 
-$stmt = $conn->prepare($sql);
-$result = $stmt->execute($arr_ps);
-$res_cnt =$stmt->rowCount();
-var_dump($res_cnt);
-if($res_cnt >= 2) {
-    $conn->rollback();
-    echo "rollback";
-} else {
-    $conn->commit();
-    echo "commit";
-}
+// $stmt = $conn->prepare($sql);
+// $result = $stmt->execute($arr_ps);
+// $conn->commit();
 
-db_destroy_conn($conn);
+// db_destroy_conn($conn);
 
 
 
