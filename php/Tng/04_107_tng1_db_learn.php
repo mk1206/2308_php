@@ -5,7 +5,7 @@
 function db_conn( &$conn ) {
     $db_host    = "localhost";
     $db_user    = "root";
-    $db_pw      = "php504";
+    $db_pw      = "1234";
     $db_name    = "employees";
     $db_charset = "utf8mb4";
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
@@ -72,33 +72,33 @@ $sql = " SELECT "
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll();
-print_r($result);
+// print_r($result);
 
 // 2. [1]번에 해당하는 사원의 직책 정보를 insert
 //  2-1. 직책은 "green", 시작일은 현재시간, 종료일은 99990101
-
-$emp = "";
+$emp = [];
 
 foreach($result as $val){
-    $emp = ($val["emp_no"]);
+    $emp[] = $val["emp_no"];
 }
+print_r($emp);
 
-$sql = " INSERT INTO "
-    ." titles "
-    ." VALUES ( "
-	." :emp_no "
-	." , 'green' "
-	." , date(NOW()) "
-	." , :to_date) "; 
+for($i = 0; $i <= count($emp); $i++){
+    $sql = " INSERT INTO "
+        ." titles "
+        ." VALUES ( "
+    	." :emp_no "
+    	." , 'green' "
+    	." , date(NOW()) "
+    	." , :to_date) "; 
 
-$arr_ps = [
-    ":emp_no" => $emp
-    ,":to_date" => 99990101
-];
+    $arr_ps = [
+        ":emp_no" => $emp[$i]
+        ,":to_date" => 99990101
+    ];
 
-$stmt = $conn->prepare($sql);
-$result = $stmt->execute($arr_ps);
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute($arr_ps);
+}
 $conn->commit();
-
-var_dump($result);
 $conn = null;
