@@ -5,7 +5,7 @@
 function db_conn( &$conn ) {
     $db_host    = "localhost";
     $db_user    = "root";
-    $db_pw      = "1234";
+    $db_pw      = "php504";
     $db_name    = "employees";
     $db_charset = "utf8mb4";
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
@@ -69,36 +69,56 @@ $sql = " SELECT "
     ." emp_no "
     ." NOT IN(SELECT emp_no FROM titles) ";
 
+// NOT EXISTS 사용
+// SELECT *
+// FROM employees emp
+// WHERE NOT EXISTS(
+// 	SELECT 1
+// 	FROM titles tit
+// 	WHERE emp.emp_no = tit.emp_no );
+	
+// LEFT JOIN 사용
+// SELECT *
+// FROM employees emp
+// 	LEFT JOIN titles tit
+// 	ON emp.emp_no = tit.emp_no
+// WHERE tit.emp_no IS NULL;
+
+// 방법1
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll();
-// print_r($result);
+
+// 방법2
+// $stmt = $conn->query($sql);
+// $result = $stmt->fetchAll();
+
+print_r($result);
 
 // 2. [1]번에 해당하는 사원의 직책 정보를 insert
 //  2-1. 직책은 "green", 시작일은 현재시간, 종료일은 99990101
-$emp = [];
 
-foreach($result as $val){
-    $emp[] = $val["emp_no"];
-}
-print_r($emp);
+// foreach($result as $val){
+//     $sql = " INSERT INTO "
+//         ." titles "
+//         ." VALUES ( "
+//         ." :emp_no "
+//         ." , 'green' "
+//         ." , date(NOW()) "
+//         ." , :to_date) "; 
+    
+//     $arr_ps = [
+//         ":emp_no" => $val["emp_no"]
+//         ,":to_date" => 99990101
+//     ];
+    
+//     $stmt = $conn->prepare($sql);
+//     $stmt->execute($arr_ps);
+//     if(!$result){
+//          throw new Exception("Insert Error");
+// }
 
-for($i = 0; $i <= count($emp); $i++){
-    $sql = " INSERT INTO "
-        ." titles "
-        ." VALUES ( "
-    	." :emp_no "
-    	." , 'green' "
-    	." , date(NOW()) "
-    	." , :to_date) "; 
+// }
 
-    $arr_ps = [
-        ":emp_no" => $emp[$i]
-        ,":to_date" => 99990101
-    ];
+// $conn->commit();
 
-    $stmt = $conn->prepare($sql);
-    $result = $stmt->execute($arr_ps);
-}
-$conn->commit();
-$conn = null;
