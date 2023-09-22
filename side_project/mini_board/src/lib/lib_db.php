@@ -99,6 +99,32 @@ function db_insert_boards(&$conn, &$arr_param) {
     }
 }
 
+function db_select_boards_id(&$conn, &$id){
+    $sql =
+    " SELECT "
+    ." id "
+    ." , title "
+    ." , content "
+    ." , create_at "
+    ." FROM "
+    ." boards "
+    ." WHERE "
+    ." id = :id ";
+
+    $arr_ps = [
+        ":id" => $id
+    ];
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result;
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
 
 
 // TODO : 나중에 지울 것

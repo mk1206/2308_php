@@ -17,7 +17,7 @@ if($http_method === "POST") {
         }
         $conn->beginTransaction(); // 트랜잭션 시작
 
-        if(!db_insert_boards($conn, $arr_post)) {
+        if(!db_insert_boards($conn)) {
             throw new Exception("DB Error : Insert Boards");
         }
 
@@ -50,7 +50,6 @@ if($http_method === "POST") {
         require_once(FILE_HEADER);
     ?>
     <form action="/mini_board/src/insert.php" method="post">
-        <fieldset>
             <label for="title">제목</label>
             <input id="title" name="title" type="text">
             <br>
@@ -59,7 +58,6 @@ if($http_method === "POST") {
             <br>
             <button type="submit">작성</button>
             <a href="/mini_board/src/list.php">취소</a>
-        </fieldset>
     </form>
     
 </body>

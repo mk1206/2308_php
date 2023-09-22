@@ -1,5 +1,6 @@
 <?php
 // GET Method
+// 주소창에 나타나게 함
 
 // URL의 구조
 
