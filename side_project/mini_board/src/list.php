@@ -87,7 +87,6 @@ try {
     require_once(FILE_HEADER);
     ?>
     <main>
-        <a href="/mini_board/src/insert.php">글 작성</a>
         <table>
             <colgroup>
                 <col width = "20%">
@@ -114,12 +113,17 @@ try {
             <a class="page-btn" href="/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>">이전</a>
             <?php
             for($i=1; $i <= $max_page_num; $i++) {
-            ?>
+                if ((int)$page_num === $i) { ?> 
+                <a class="page-btn-color" href="/mini_board/src/list.php/?page= <?php echo $i; ?> "> <?php echo $i; ?> </a>
+            <?php
+            } else { ?>
                 <a class="page-btn" href="/mini_board/src/list.php/?page= <?php echo $i; ?> "> <?php echo $i; ?> </a>
             <?php
             }
+        }
             ?>
             <a class="page-btn" href="/mini_board/src/list.php/?page=<?php echo $next_page_num ?>">다음</a>
+            <a class="insert_btn" href="/mini_board/src/insert.php">글 작성</a>
         </section>
     </main>
 </body>

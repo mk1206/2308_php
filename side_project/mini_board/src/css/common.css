@@ -5,15 +5,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(../../doc/doghome.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 0 140px;
+    background-color: rgb(224, 224, 224);
 }
 
 header {
     width: 100%;
-    background-color: #000;
+    background-color: darkgreen;
     padding: 2rem;
 }
 
@@ -26,7 +23,7 @@ header>h1 {
 
 table {
     border-collapse: collapse;
-    width: 700px;
+    width: 1000px;
     height: 500px;
     margin: 50px auto;
     font-size: 1.5rem;
@@ -40,17 +37,21 @@ th, td {
 
 .table-title {
     border: none;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: darkgreen;
     color: #fff;
 }
 
 section {
     text-align: center;
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 a {
     text-decoration: none;
     display: inline-block;
+    color: #000;
 }
 
 .page-btn {
@@ -58,6 +59,58 @@ a {
     height: 50px;
     text-align: center;
     line-height: 50px;
-    background-color: #000;
-    color: #fff;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+}
+
+.insert_btn {
+    width: 70px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    right: 0;
+}
+
+.page-btn:hover, .insert_btn:hover {
+    background-color: darkgreen;
+}
+
+.page-btn-color {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #000;
+    background-color: darkgreen;
+    color: #000;
+}
+
+.insert_form {
+    width: 800px;
+    margin: 50px auto;
+    position: relative;
+}
+
+.title {
+    width: 90%;
+    height: 40px;
+}
+
+.content-label {
+    vertical-align: top;
+}
+
+.content-area {
+    width: 90%;
+    height: 300px;
+}
+
+.button {
+    position: absolute;
+    right: 40px;
 }
