@@ -126,6 +126,29 @@ function db_select_boards_id(&$conn, &$id){
     }
 }
 
+function db_update_boards_id(&$conn, &$arr_param) {
+    $sql = " UPDATE "
+        ." boards "
+        ." SET "
+        ." title = :title "
+        ." , content = :content "
+        ." WHERE id = :id ";
+        $arr_ps = [
+            ":title" => $arr_param["title"]
+            , ":content" => $arr_param["content"]
+            , ":id" => $arr_param["id"]
+        ];
+
+        try {
+            $stmt = $conn->prepare($sql);
+            $result = $stmt->execute($arr_ps);
+            return $result;
+        } catch(Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+}
+
 
 // TODO : 나중에 지울 것
 // $conn = null;

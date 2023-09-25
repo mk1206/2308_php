@@ -1,0 +1,35 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #DDDDDD;
+}
+
+table {
+	width: 800px;
+	height: 600px;
+	background-color: #309600;
+	border: 60px solid #959595;
+	margin: 80px auto;
+}
+
+th, td {
+	text-align: center;
+}
+
+th {
+	font-size: 2rem;
+}
+
+td {
+	font-size: 1.5rem;
+	border-bottom: 1px solid #fff;
+}
+
+.border_none {
+	border: none;
+}
+

@@ -27,7 +27,7 @@ try {
         throw new Exception("DB Error : PDO_Select_id");
     } else if(!(count($result) === 1)) {
         throw new Exception("DB Error : PDO_Select_id count, ".count($result));
-    }
+    } 
 
     $item = $result[0];
 } catch(Exception $e) {
@@ -42,7 +42,7 @@ $input_id = $_GET["id"];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width\, initial-scale=1.0">
@@ -71,8 +71,8 @@ $input_id = $_GET["id"];
             <td><?php echo $item["create_at"]; ?></td>
         </tr> 
     </table>
-    <a href="">수정</a>
-    <a href="/mini_board/src/list.php/?page= <?php echo $page; ?> ">취소</a>
-    <a href="">삭제</a>
+    <a class="detail-btn" href="/mini_board/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>">수정</a>
+    <a class="detail-btn" href="/mini_board/src/list.php/?page=<?php echo $page; ?>">취소</a>
+    <a class="detail-btn" href="">삭제</a>
 </body>
 </html>

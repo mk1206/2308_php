@@ -75,7 +75,7 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,10 +114,10 @@ try {
             <?php
             for($i=1; $i <= $max_page_num; $i++) {
                 if ((int)$page_num === $i) { ?> 
-                <a class="page-btn-color" href="/mini_board/src/list.php/?page= <?php echo $i; ?> "> <?php echo $i; ?> </a>
+                <a class="page-btn-color" href="/mini_board/src/list.php/?page=<?php echo $i; ?>"> <?php echo $i; ?> </a>
             <?php
             } else { ?>
-                <a class="page-btn" href="/mini_board/src/list.php/?page= <?php echo $i; ?> "> <?php echo $i; ?> </a>
+                <a class="page-btn" href="/mini_board/src/list.php/?page=<?php echo $i; ?>"> <?php echo $i; ?> </a>
             <?php
             }
         }
