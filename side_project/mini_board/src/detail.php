@@ -73,6 +73,6 @@ $input_id = $_GET["id"];
     </table>
     <a class="detail-btn" href="/mini_board/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>">수정</a>
     <a class="detail-btn" href="/mini_board/src/list.php/?page=<?php echo $page; ?>">취소</a>
-    <a class="detail-btn" href="">삭제</a>
+	<a class="detail-btn" href="/mini_board/src/delete.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>">삭제</a>
 </body>
 </html>

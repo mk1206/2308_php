@@ -115,7 +115,7 @@ a {
     right: 40px;
 }
 
-.update-btn, .detail-btn {
+.update-btn, .detail-btn, .delete-btn {
     width: 70px;
     height: 40px;
     text-align: center;
