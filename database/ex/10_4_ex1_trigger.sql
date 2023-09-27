@@ -14,7 +14,7 @@
 -- 4. 트리거 생성
 -- 	DELIMITER $$
 -- 	CREATE TRIGGER 트리거명
--- 	{BEFORE | AFTER} {INSERT | UPDATE| DELETE } -- 실행시기와 작업 선택
+-- 	{BEFORE | AFTER} {INSERT | UPDATE | DELETE } -- 실행시기와 작업 선택
 -- 	ON 테이블 -- 트리거를 부착할 테이블
 -- 	FOR EACH ROW -- 아래 나올 조건에 해당하는 모든 row에 적용
 -- 
