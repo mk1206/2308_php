@@ -61,6 +61,15 @@ try {
         throw new Exception("DB Error : SELECT boards");
     }
 
+    $search_method = $_SERVER["REQUEST_METHOD"];
+
+    if($search_method === "POST") {
+        $arr_post = $_POST;
+        if(!db_select_boards_search($conn, $arr_post)) {
+            throw new Exception("DB Error : search Boards");
+      }
+    }
+
 } catch(Exception $e) {
     echo $e->getMessage(); // 예외발생 메세지 출력
     exit; // 처리 종료
@@ -110,6 +119,10 @@ try {
             <?php   } ?>
         </table>
         <section>
+            <form class="search" action="/mini_board/src/list.php" method="post">
+                <input class="search_input" name="search" type="text">
+                <button class="search_btn" type="submit">검색</button>
+            </form>
             <a class="page-btn" href="/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>">이전</a>
             <?php
             for($i=1; $i <= $max_page_num; $i++) {

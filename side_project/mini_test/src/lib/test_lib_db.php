@@ -3,7 +3,7 @@
 function my_db_conn( &$conn ) {
     $db_host    = "localhost"; // host
     $db_user    = "root"; // user
-    $db_pw      = "1234"; //password
+    $db_pw      = "php504"; //password
     $db_name    = "test_mini_board"; // DB name
     $db_charset = "utf8mb4"; //charset
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
@@ -42,48 +42,6 @@ function db_select_boards(&$conn) {
         ." FROM "
         ."      boards ";
 
-        $stmt = $conn->query($sql);
-        $result = $stmt->fetchAll();
-        return $result;
-    } catch(Exception $e) {
-        return false;
-    }
-}
-
-function db_select_boards_study(&$conn) {
-    $sql = 
-    " SELECT "
-    ."      id "
-    ."      ,title "
-    ."      ,create_at "
-    ."      ,category"
-    ." FROM "
-    ."      boards "
-    ." WHERE "
-    ."      category = '공부' ";
-    
-    try {
-        $stmt = $conn->query($sql);
-        $result = $stmt->fetchAll();
-        return $result;
-    } catch(Exception $e) {
-        return false;
-    }
-}
-
-function db_select_boards_work_out(&$conn) {
-    $sql = 
-    " SELECT "
-    ."      id "
-    ."      ,title "
-    ."      ,create_at "
-    ."      ,category"
-    ." FROM "
-    ."      boards "
-    ." WHERE "
-    ."      category = '운동' ";
-    
-    try {
         $stmt = $conn->query($sql);
         $result = $stmt->fetchAll();
         return $result;

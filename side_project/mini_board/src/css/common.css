@@ -124,3 +124,19 @@ a {
     background-color: #fff;
     color: #000;
 }
+
+.class_a {
+    color: #fff;
+}
+
+.search {
+    display: inline-block;
+    width: 250px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.search_input, .search_btn {
+    height: 30px;
+}

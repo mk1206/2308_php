@@ -14,24 +14,6 @@ if(!$result) {
 	throw new Exception("DB Error : SELECT boards");
 }
 
-$type_method = $_SERVER["REQUEST_METHOD"];
-if($type_method === "POST") {
-	try {
-		$arr_post = $_POST;
-
-		$result = db_select_boards_category($conn, $arr_post);
-		if(!$result) {
-			throw new Exception("DB Error : SELECT category");
-		}
-		
-	} catch(Exception $e) {
-		echo $e->getMessage(); // 예외발생 메세지 출력
-		exit; // 처리 종료
-	} finally {
-		db_destroy_conn($conn); // DB 파기
-	}
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -39,22 +21,49 @@ if($type_method === "POST") {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../css/test_common.css">
+	<link rel="stylesheet" href="/mini_test/src/css/test_common.css">
 	<title>Document</title>
 </head>
 <body>
 	<main>
-		for($i)
-	<?php
-		foreach($result as $item) {
-	?>
-		<ul>
-			<li><?php echo $item["id"]; ?></li>
-			<li><?php echo $item["title"]; ?></li>
-			<li><?php echo $item["create_at"]; ?></li>
-			<li><?php echo $item["category"]; ?></li>
-		</ul>
-		<?php	} ?>
+		<form action="/mini_test/src/test_list.php" method="post">
+			<button name="category" value="all">전체</button>
+			<button name="category" value="study">공부</button>
+			<button name="category" value="work_out">운동</button>
+		</form>
+		<?php
+		foreach($_POST as $value) {
+			foreach($result as $item) {
+				if($value == "all") {
+					?>
+					<ul>
+						<li><?php echo $item["id"]; ?></li>
+						<li><?php echo $item["title"]; ?></li>
+						<li><?php echo $item["create_at"]; ?></li>
+						<li><?php echo $item["category"]; ?></li>
+					</ul>
+					<?php
+				} else if($value == "study") {
+					if($item["category"] == "공부") { ?>
+					<ul>
+						<li><?php echo $item["id"]; ?></li>
+						<li><?php echo $item["title"]; ?></li>
+						<li><?php echo $item["create_at"]; ?></li>
+						<li><?php echo $item["category"]; } ?></li>
+					</ul>
+					<?php
+				} else if($value == "work_out") {
+					if($item["category"] == "운동") { ?>
+					<ul>
+						<li><?php echo $item["id"]; ?></li>
+						<li><?php echo $item["title"]; ?></li>
+						<li><?php echo $item["create_at"]; ?></li>
+						<li><?php echo $item["category"]; } ?></li>
+					</ul>
+					<?php
+				}
+			}
+		} ?>
 	</main>
 </body>
 </html> 
