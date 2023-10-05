@@ -55,7 +55,6 @@ function db_select_boards_paging(&$conn, &$arr_param) {
         $stmt->execute($arr_ps);
         $result = $stmt->fetchAll();
         return $result; // 정상 : 쿼리 결과 리턴
-
     } catch(Exception $e) {
         return false; // 예외 발생 : false 리턴
     }
@@ -75,6 +74,7 @@ function db_select_boards_cnt(&$conn) {
         $result = $stmt->fetchAll();
         return (int)$result[0]["cnt"];
     } catch(Exception $e) {
+        echo $e->getMessage();
         return false;
     }
 }
@@ -99,6 +99,7 @@ function db_insert_boards(&$conn, &$arr_param) {
         $result = $stmt->execute($arr_ps);
         return $result; // 정상 : 쿼리 결과 리턴
     } catch(Exception $e) {
+        echo $e->getMessage();
         return false; // 예외 발생 : false 리턴
     }
 }
@@ -190,18 +191,19 @@ function db_select_boards_search(&$conn, &$arr_param) {
     ." boards "
     ." WHERE "
     ." title "
-    ." LIKE '%:str%' "
+    ." LIKE :str "
     ." AND "
     ." delete_flg = '0' ";
 
     $arr_ps = [
-        ":str" => $arr_param["search"]
+        ":str" => "%".$arr_param["search"]."%"
     ];
 
     try {
         // 2. Query 실행
         $stmt = $conn->prepare($sql);
-        $result = $stmt->execute($arr_ps);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
         return $result; // 정상 종료일 때 true를 리턴
     } catch(Exception $e) {
         echo $e->getMessage(); // Exception 메세지 출력

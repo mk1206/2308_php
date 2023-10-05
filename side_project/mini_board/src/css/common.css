@@ -140,3 +140,12 @@ a {
 .search_input, .search_btn {
     height: 30px;
 }
+
+.back-btn {
+    width: 90px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #000;
+    color: #fff;
+}

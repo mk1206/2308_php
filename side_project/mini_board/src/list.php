@@ -61,17 +61,21 @@ try {
         throw new Exception("DB Error : SELECT boards");
     }
 
-    $search_method = $_SERVER["REQUEST_METHOD"];
-
-    if($search_method === "POST") {
-        $arr_post = $_POST;
-        if(!db_select_boards_search($conn, $arr_post)) {
-            throw new Exception("DB Error : search Boards");
-      }
+    if(isset($_POST)) {
+        $search_method = $_SERVER["REQUEST_METHOD"];
+        if($search_method === "POST") {
+            $arr_post = $_POST;
+            $result = db_select_boards_search($conn, $arr_post);
+            if($result === false) {
+                throw new Exception("DB Error : search Boards");
+          }
+        }
     }
 
+
 } catch(Exception $e) {
-    echo $e->getMessage(); // 예외발생 메세지 출력
+    // echo $e->getMessage(); // 예외발생 메세지 출력
+    header("Location: error.php/?err_msg={$e->getMessage()}");
     exit; // 처리 종료
 } finally {
     db_destroy_conn($conn); // DB 파기
@@ -109,6 +113,7 @@ try {
             </tr>
             <?php
             // 리스트 생성
+            if (is_array($result) || is_object($result)) {
                 foreach($result as $item) {
             ?>
                     <tr>
@@ -116,7 +121,8 @@ try {
                         <td><a href="/mini_board/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>"><?php echo $item["title"]; ?></a></td>
                         <td><?php echo $item["create_at"]; ?></td>
                     </tr>
-            <?php   } ?>
+            <?php   }
+            } ?>
         </table>
         <section>
             <form class="search" action="/mini_board/src/list.php" method="post">
