@@ -86,17 +86,17 @@
 // echo my_sum("134");
 
 // 문자열 길이로
-// $str = "3145";
-// function my_test(string $str){
-// 	$len = mb_strlen($str);
-// 	$sum = 0;
-// 	for($idx = 0; $idx <= $len - 1; $idx++){
-// 		$sum += (int)mb_substr($str, $idx, 1);
-// 	}
-// 	return $sum;
-// }
+$str = "3145";
+function my_test(string $str){
+	$len = mb_strlen($str);
+	$sum = 0;
+	for($idx = 0; $idx <= $len - 1; $idx++){
+		$sum += (int)mb_substr($str, $idx, 1);
+	}
+	return $sum;
+}
 
-// echo my_test($str);
+echo my_test($str);
 
 
 
