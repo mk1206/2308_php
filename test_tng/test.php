@@ -1,14 +1,14 @@
 <?php
 
-$file = fopen("19.txt", 'a');
+// $file = fopen("19.txt", 'a');
 
-for($i = 1; $i < 10; $i++) {
-	$num = 19*$i;
-	fwrite($file, "19 X {$i} = {$num}\n");
-	// fpust으로 많이 작성
-}
+// for($i = 1; $i < 10; $i++) {
+// 	$num = 19*$i;
+// 	fwrite($file, "19 X {$i} = {$num}\n");
+// 	// fpust으로 많이 작성
+// }
 
-fclose($file);
+// fclose($file);
 
 // echo "\n";
 // echo "\n";
