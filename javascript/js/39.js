@@ -48,6 +48,7 @@ const INPUT = document.getElementById('intxt');
 
 // removeAttribute('') : 요소의 속성을 제거
 // INPUT.removeAttribute('placeholder'); 
+// INPUT.removeAttribute('class');
 
 // ---------------
 // 4. 요소 스타일링
@@ -58,3 +59,65 @@ TITLE.style.color = 'red';
 // classList : 클래스로 스타일 추가 또는 삭제
 TITLE.classList.add('class1', 'class2', 'class3');
 TITLE.classList.remove('class2');
+
+// -------------------
+// 5. 새로운 요소 생성
+// -------------------
+// 요소 만들기
+const LI = document.createElement('li');
+
+// 삽입할 부모 요소 접근
+const UL = document.getElementById('ul');
+
+// 부모요소의 가장 마지막 위치에 삽입
+// 추가
+UL.appendChild(LI);
+// 삭제
+LI.remove();
+// LI 요소에 글씨 삽입
+LI.innerHTML = 'ㅎㅇㅎㅇㅎㅇ';
+
+// 요소를 특정 위치에 삽입
+const SPACE = document.querySelector('li:nth-child(3)');
+UL.insertBefore(LI, SPACE);
+
+
+
+// 1. 사과 게임 위에 장기를 넣어주ㅝ
+const LI1 = document.createElement('li');
+LI1.innerHTML = '장기';
+const SPACE1 = document.querySelector('li:nth-child(5)');
+UL.insertBefore(LI1, SPACE1);
+
+// 사과 게임에 id를 주고 getElementById 하기
+// const LIJANGGI = document.createElement('li');
+// LIJANGGI.innerHTML = '장기';
+// const LIAPPLE = document.getElementById('apple');
+// UL.insertBefore(LIJANGGI, LIAPPLE);
+
+// 2. 어메이징 브릭에 베이지 배경색을 넣어주세요
+const SPACE2 = document.querySelector('ul li:last-child');
+SPACE2.style.backgroundColor = 'beige';
+// SPACE2.setAttribute('style', 'background-color: beige');
+
+// 3. 리스트에서 짝수는 빨간색 글씨, 홀수는 파란색 글씨
+const LI_ALL = document.getElementsByTagName('li');
+
+for(let i = 0; i < LI_ALL.length; i++) {
+	if(i % 2 === 0) {
+		LI_ALL[i].style.color = 'blue';
+	} else {
+		LI_ALL[i].style.color = 'red';
+	}
+
+	// 삼항 연산자로
+	// LI_ALL[i].style.color = i % 2 === 0 ? 'blue' : 'red';
+};
+
+// 짝수, 홀수
+// const EVEN = document.querySelectorAll('ul li:nth-child(even)');
+// const ODD = document.querySelectorAll('ul li:nth-child(odd)');
+
+// DOM
+// https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model
+
