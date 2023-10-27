@@ -3,7 +3,11 @@
 	// 숨어있는 div를 찾아보슈
 
 	const BTN = document.getElementById('btn');
-	BTN.addEventListener('click', () => alert('안녕하세요'+'\n'+'숨어있는 div를 찾아보슈'));
+
+	BTN.addEventListener('click', () => {
+		alert('안녕하세요'+'\n'+'숨어있는 div를 찾아보슈')
+		BTN.classList.add('start');
+	});
 
 // 2. 특정 영역에 마우스 포인터가 진입하면 아래 내용의 알러트가 나옴
 	// 들킨 상태에서는 알러트가 안 나옴
@@ -11,7 +15,7 @@
 
 	const DIV1 = document.getElementById('div1');
 	DIV1.addEventListener('mouseenter', () => {
-		if(getComputedStyle(DIV1).backgroundColor == 'rgb(255, 255, 255)') {
+		if(getComputedStyle(DIV1).backgroundColor === 'rgb(255, 255, 255)' && BTN.className === 'start') {
 			alert('두근두근')
 		}
 	});
@@ -23,17 +27,17 @@
 	// 다시 숨는다
 
 	DIV1.addEventListener('click', () => {
-		if(getComputedStyle(DIV1).backgroundColor == 'rgb(255, 255, 255)'){
+		if(getComputedStyle(DIV1).backgroundColor === 'rgb(255, 255, 255)' && BTN.className === 'start'){
 			alert('들켰당');
 			DIV1.style.backgroundColor = 'beige';
-		} else if(getComputedStyle(DIV1).backgroundColor == 'rgb(245, 245, 220)') {
+		} else if(getComputedStyle(DIV1).backgroundColor === 'rgb(245, 245, 220)' && BTN.className === 'start') {
 			alert('다시 숨는다');
 			DIV1.style.backgroundColor = 'white';
 
-			let randX = Math.ceil(Math.random() * 2000);
-			let randY = Math.ceil(Math.random() * 1000);
-			DIV1.style.right = randX+'px';
-			DIV1.style.bottom = randY+'px';
+			let randX = Math.ceil(Math.random() * window.innerWidth);
+			let randY = Math.ceil(Math.random() * window.innerHeight);
+			DIV1.style.marginLeft = (randX - 200)+'px';
+			DIV1.style.marginTop = (randY - 200)+'px';
 		}
 	});
 
