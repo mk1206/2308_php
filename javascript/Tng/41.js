@@ -35,7 +35,6 @@ function time() {
 	// 시간을 더 예쁘게 줌.....
 	// now.toLocaleTimeString();
 
-	toLocal
 	DIV.innerHTML = '현재 시각 '+'<br>'+
 					'한국 '+AMPM+' '+hour+':'+min.slice(-2)+':'+sec.slice(-2)+'<br>'+
 					'영국 '+lon_AMPM+' '+lon_hour+':'+lon_min.slice(-2)+':'+lon_sec.slice(-2)+'<br>'+
