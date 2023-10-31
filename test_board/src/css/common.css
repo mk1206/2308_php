@@ -44,14 +44,16 @@ a {
 }
 
 .section2 {
-	background-color: rgb(255, 247, 206);
+	background-color: rgb(238, 252, 255);
 	width: 1300px;
 	height: 800px;
 	margin: 30px auto;
+	border: 1px solid rgb(134, 233, 255);
 }
 
 .detail_go {
-	border: 1px solid #000;
+	border: 1px solid rgb(79, 223, 255);
+	border-radius: 5%;
 	display: inline-block;
 	width: 150px;
 	height: 130px;
@@ -61,8 +63,8 @@ a {
 }
 
 .box { 
-	border: 1px solid #000;
-	background-color: rgb(255, 247, 206);
+	border: 1px solid rgb(134, 233, 255);
+	background-color: rgb(238, 252, 255);
 	width: 1300px;
 	height: 800px;
 	margin: 30px auto 0 auto ;
@@ -71,13 +73,13 @@ a {
 }
 
 .div1 {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid rgb(134, 233, 255);
 	text-align: center;
 	height: 80px;
 	line-height: 60px;
 }
 
-.create_at {
+.create_at, .back, .cancel {
 	float: left;
 }
 
@@ -86,20 +88,12 @@ a {
 	margin-right: 300px;
 }
 
-.mood {
+.mood, .delete, .write-go {
 	float: right;
 }
 
 .detail-box {
 	font-size: 40px;
-}
-
-.back {
-	float: left;
-}
-
-.delete {
-	float: right;
 }
 
 .update {
@@ -109,4 +103,13 @@ a {
 
 .content {
 	margin-top: 30px;
+}
+
+img {
+	width: 80px;
+	height: 70px;
+}
+
+.cancel, .write-go {
+	font-size: 40px;
 }

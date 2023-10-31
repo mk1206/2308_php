@@ -3,7 +3,7 @@
 function my_db_conn( &$conn ) {
     $db_host    = "localhost"; // host
     $db_user    = "root"; // user
-    $db_pw      = "php504"; //password
+    $db_pw      = "1234"; //password
     $db_name    = "test_board"; // DB name
     $db_charset = "utf8mb4"; //charset
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
@@ -77,10 +77,10 @@ function db_select_month(&$conn, &$arr_month) {
     }
 }
 
-function db_select_detail(&$conn, $id) {
+function db_select_detail(&$conn, &$id) {
     try {
         $sql = " SELECT "
-        ." id, title, content, create_at, weather, mood "
+        ." id, title, content, Date(create_at) AS Date, weather, mood "
         ." FROM "
         ." boards "
         ." WHERE "

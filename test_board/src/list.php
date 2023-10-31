@@ -37,7 +37,7 @@ try {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../src/css/common.css">
+	<link rel="stylesheet" href="/test_board/src/css/common.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap" rel="stylesheet">
@@ -58,7 +58,19 @@ try {
 		<a class="detail_go" href="/test_board/src/detail.php/?id=<?php echo $item["id"]; ?>">
 			<span><?php echo $item["create_at"]; ?>일</span>
 			<br>
-			<span><?php echo $item["mood"]; ?></span>
+			<img src="/test_board/doc/<?php
+			if($item["mood"] === 0) {
+				echo "good.png";
+			} else if($item["mood"] === 1) {
+				echo "sad.png";
+			} else if($item["mood"] === 2) {
+				echo "angry.png";
+			} else if($item["mood"] === 3) {
+				echo "tired.png";
+			} else if($item["mood"] === 4) {
+				echo "soso.png";
+			}
+			?>">
 		</a>
 		<?php } ?>
 	</section>

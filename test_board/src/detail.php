@@ -13,10 +13,10 @@ try {
         throw new Exception("Parameter ERROR : No id");
     }
 
-    $id = $_GET["id"];
+    $id = $_GET;
 
-    $result = $db_select_detail($conn, $id);
-    if(!$result) {
+    $result = db_select_detail($conn, $id);
+    if($result === false) {
         throw new Exception("select_detail Error");
     }
     $item = $result[0];
@@ -35,8 +35,8 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/css/common.css">
-    	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/test_board/src/css/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap" rel="stylesheet">
     <title>detail</title>
@@ -49,10 +49,32 @@ try {
     </section>
     <section class="box">
         <div class="div1">
-            <span class="create_at"><?php echo $item["create_at"]; ?></span>
+            <span class="create_at"><?php echo $item["Date"]; ?></span>
             <span class="title"><?php echo $item["title"]; ?></span>
-            <span class="mood"><?php echo $item["weather"]; ?></span>
-            <span class="weather"><?php echo $item["mood"]; ?></span>
+            <img class="mood" src="/test_board/doc/<?php
+            if($item["weather"] === 0) {
+                echo "sun.png";
+            } else if($item["weather"] === 1) {
+                echo "rain.png";
+            } else if($item["weather"] === 2) {
+                echo "cloud.png";
+            } else if($item["weather"] === 3) {
+                echo "snow.png";
+            }
+            ?>"></img>
+            <img class="weather" src="/test_board/doc/<?php
+            if($item["mood"] === 0) {
+                echo "good.png";
+            } else if($item["mood"] === 1) {
+                echo "sad.png";
+            } else if($item["mood"] === 2) {
+                echo "angry.png";
+            } else if($item["mood"] === 3) {
+                echo "tired.png";
+            } else if($item["mood"] === 4) {
+                echo "soso.png";
+            }
+            ?>"></img>
          </div>
         <p class="content"><?php echo $item["content"]; ?></p>
     </section>
