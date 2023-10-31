@@ -40,3 +40,62 @@
 //		, name: '홍길동'
 //		}
 // }
+
+// 4. API 예제 사이트
+// 	https://picsum.photos/
+
+// const MY_URL = "https://picsum.photos/v2/list?page=2&limit=5";
+const BTN_API = document.getElementById('btn-api');
+BTN_API.addEventListener('click', my_fetch);
+
+const BTN_DEL = document.getElementById('btn-del');
+BTN_DEL.addEventListener('click', clear);
+
+function my_fetch() {
+	const INPUT_URL = document.getElementById('input-url');
+	fetch(INPUT_URL.value.trim())
+	.then(response => response.json())
+	.then(data => makeImg(data))
+	.catch(error => console.log(error));
+}
+
+function makeImg(data) {
+	data.forEach(item => {
+		const NEW_IMG = document.createElement('img');
+		const DIV_IMG = document.getElementById('div-img');
+
+		NEW_IMG.setAttribute('src', item.download_url);
+		NEW_IMG.style.width = '200px';
+		NEW_IMG.style.height ='200px';
+		DIV_IMG.appendChild(NEW_IMG);
+	});
+}
+
+function clear() {
+	// 방법 1		20 / 100    *** div를 삭제해서 다시 호출하면 img 안 됨 ***
+	// const DIV_IMG = document.querySelector('#div-img');
+	// DIV_IMG.remove();
+
+	// 방법 2		51 / 100
+	// window.location.reload();
+
+	// 방법 3		80 / 100
+	const NEWIMG = document.querySelectorAll('img');
+
+	for(let i = 0; i < NEWIMG.length; i++) {
+		NEWIMG[i].remove();
+	}
+
+	// 방법 4		90 / 100
+	// const DIV_IMG = document.querySelector('#div-img');
+	// DIV_IMG.replaceChildren();
+
+	// 방법 5		90 / 100
+	// const DIV_IMG = document.querySelector('#div-img');
+	// DIV_IMG.innerHTML = "";
+}
+
+// status
+// 200대 : 정상
+// 300대 : 서버에서 예외처리 됐을 때
+// 400대 : 서버 통신이 안 됐을 때 ( ex) 404 NOT FOUND )

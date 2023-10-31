@@ -44,13 +44,13 @@ a {
 }
 
 .section2 {
-	background-color: rgb(206, 255, 255);
+	background-color: rgb(255, 247, 206);
 	width: 1300px;
 	height: 800px;
 	margin: 30px auto;
 }
 
-.content {
+.detail_go {
 	border: 1px solid #000;
 	display: inline-block;
 	width: 150px;
@@ -58,4 +58,55 @@ a {
 	text-align: center;
 	margin: 14px;
 	line-height: 50px;
+}
+
+.box { 
+	border: 1px solid #000;
+	background-color: rgb(255, 247, 206);
+	width: 1300px;
+	height: 800px;
+	margin: 30px auto 0 auto ;
+	padding: 30px;
+	font-size: 40px;
+}
+
+.div1 {
+	border-bottom: 1px solid #000;
+	text-align: center;
+	height: 80px;
+	line-height: 60px;
+}
+
+.create_at {
+	float: left;
+}
+
+.weather {
+	float: right;
+	margin-right: 300px;
+}
+
+.mood {
+	float: right;
+}
+
+.detail-box {
+	font-size: 40px;
+}
+
+.back {
+	float: left;
+}
+
+.delete {
+	float: right;
+}
+
+.update {
+	float: right;
+	margin-right: 30px;
+}
+
+.content {
+	margin-top: 30px;
 }

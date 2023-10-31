@@ -7,25 +7,20 @@ $arr_get = [];
 try {
 	$conn = null;
 
-	
 	if(!my_db_conn($conn)) {
 		throw new Exception("DB Error : PDO Instance");
 	}
 	
-	$http_method = $_SERVER["REQUEST_METHOD"];
 	$arr_month["month"] = isset($_GET["month"]) ? $_GET["month"] : 10;
+	
+	$result_month = db_select_month($conn, $arr_month);
+	if(!$result_month) {
+		throw new Exception("DB select_month Error");
+	}
 	
 	$result = db_select_boards($conn, $arr_month);
 	if(!$result) {
 		throw new Exception("DB select_boards Error");
-		
-	}
-
-	if($http_method === "GET") {
-		$result_month = db_select_month($conn, $arr_month);
-		if(!$result_month) {
-			throw new Exception("DB select_month Error");
-		}
 	}
 
 } catch(Exception $e) {
@@ -60,7 +55,7 @@ try {
 	</form>
 	<section class="section2">
 		<?php foreach($result as $item) { ?>
-		<a class="content" href="/test_board/src/detail.php/?id=<?php echo $item["id"]; ?>">
+		<a class="detail_go" href="/test_board/src/detail.php/?id=<?php echo $item["id"]; ?>">
 			<span><?php echo $item["create_at"]; ?>일</span>
 			<br>
 			<span><?php echo $item["mood"]; ?></span>
