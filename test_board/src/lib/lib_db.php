@@ -101,6 +101,7 @@ function db_insert_boards(&$conn, &$arr_param) {
     try {
         $sql = " INSERT INTO "
         ." boards ( "
+        ."    id "
         ."    title "
         ."    , content "
         ."    , create_at "

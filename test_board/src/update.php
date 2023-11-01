@@ -2,6 +2,9 @@
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/test_board/src/");
 require_once(ROOT."lib/lib_db.php");
 
+$http_method = $_SERVER["REQUEST_METHOD"];
+$arr_post = [];
+
 try {
 	$conn = null;
 
@@ -9,20 +12,34 @@ try {
 		throw new Exception("DB Error : PDO Instance");
 	}
 
-    if(!isset($_GET["id"]) || $_GET["id"] === "") {
-        throw new Exception("Parameter ERROR : No id");
-    }
+    if($http_method === "GET") {
+        if(!isset($_GET["id"]) || $_GET["id"] === "") {
+            throw new Exception("Parameter ERROR : No id");
+        }
+    
+        $id = $_GET;
+    
+        $result = db_select_detail($conn, $id);
+        if($result === false) {
+            throw new Exception("select_update Error");
+        }
+        $item = $result[0];
+    } else {
+        $arr_post["id"] = isset($_POST["id"]) ? trim($_POST["id"]) : "";
+        $arr_post["title"] = isset($_POST["title"]) ? trim($_POST["title"]) : "";
+        $arr_post["content"] = isset($_POST["content"]) ? trim($_POST["content"]) : "";
+        $arr_post["weather"] = isset($_POST["weather"]) ? trim($_POST["weather"]) : "";
+        $arr_post["mood"] = isset($_POST["mood"]) ? trim($_POST["mood"]) : "";
 
-    $id = $_GET;
-
-    $result = db_select_detail($conn, $id);
-    if($result === false) {
-        throw new Exception("select_update Error");
+        
     }
-    $item = $result[0];
 
 } catch(Exception $e) {
+    if($http_method === "POST") {
+        $conn->rollBack();
+    }
     echo $e->getMessage();
+    exit;
 } finally {
     db_destroy_conn($conn);
 }
@@ -48,23 +65,24 @@ try {
         </section>
         <section class="box">
             <div class="div1">
+                <input type="hidden" name="id" value="<?php echo $item["id"]; ?>">
                 <span class="create_at"><?php echo $item["Date"]; ?></span>
-                <input type="text" name="title" placeholder="제목" class="title">
+                <input type="text" name="title" class="title" value="<?php echo $item["title"] ?>">
                 <select name="weather" class="weather">
-                    <option value="0">맑음</option>
-                    <option value="1">비</option>
-                    <option value="2">구름</option>
-                    <option value="3">눈</option>
+                    <option value="0" <?php echo $item["weather"] === 0 ? "selected" : ""; ?>>맑음</option>
+                    <option value="1" <?php echo $item["weather"] === 1 ? "selected" : ""; ?>>비</option>
+                    <option value="2" <?php echo $item["weather"] === 2 ? "selected" : ""; ?>>구름</option>
+                    <option value="3" <?php echo $item["weather"] === 3 ? "selected" : ""; ?>>눈</option>
                 </select>
                 <select name="mood" class="mood">
-                    <option value="0">좋음</option>
-                    <option value="1">슬픔</option>
-                    <option value="2">화남</option>
-                    <option value="3">피곤</option>
-                    <option value="4">쏘쏘</option>
+                    <option value="0" <?php echo $item["mood"] === 0 ? "selected" : ""; ?>>좋음</option>
+                    <option value="1" <?php echo $item["mood"] === 1 ? "selected" : ""; ?>>슬픔</option>
+                    <option value="2" <?php echo $item["mood"] === 2 ? "selected" : ""; ?>>화남</option>
+                    <option value="3" <?php echo $item["mood"] === 3 ? "selected" : ""; ?>>피곤</option>
+                    <option value="4" <?php echo $item["mood"] === 4 ? "selected" : ""; ?>>쏘쏘</option>
                 </select>
             </div>
-            <textarea name="content" class="content insert-content" cols="30" rows="10"></textarea>
+            <textarea name="content" class="content insert-content" cols="30" rows="10"><?php echo $item["content"] ?></textarea>
         </section>
     </form>
 </body>
