@@ -1,24 +1,20 @@
 <?php
 
 function my_db_conn( &$conn ) {
-    $db_host    = "localhost"; // host
-    $db_user    = "root"; // user
-    $db_pw      = "1234"; //password
-    $db_name    = "test_board"; // DB name
-    $db_charset = "utf8mb4"; //charset
+    $db_host    = "localhost";
+    $db_user    = "root";
+    $db_pw      = "php504";
+    $db_name    = "test_board";
+    $db_charset = "utf8mb4";
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
 
     try {
         $db_options = [
-            // DB의 Prepared Statement 기능을 사용하도록 설정
             PDO::ATTR_EMULATE_PREPARES      => false
-            // PDO Exception을 Throws 하도록 설정
             ,PDO::ATTR_ERRMODE              => PDO::ERRMODE_EXCEPTION
-            // 연상배열로 Fetch를 하도록 설정
             ,PDO::ATTR_DEFAULT_FETCH_MODE   => PDO::FETCH_ASSOC
         ];
 
-        // PDO Class로 DB 연동
         $conn = new PDO($db_dns, $db_user, $db_pw, $db_options);
         return true;
     } catch (Exception $e){
@@ -38,7 +34,8 @@ function db_select_boards(&$conn, &$arr_month) {
         ." FROM "
         ." boards "
         ." WHERE "
-        ." MONTH(create_at) = :month ";
+        ." MONTH(create_at) = :month "
+        ." ORDER BY create_at ";
 
         $arr_ps = [
             ":month" => (int)$arr_month["month"]
@@ -93,6 +90,40 @@ function db_select_detail(&$conn, &$id) {
         $stmt = $conn->prepare($sql);
         $stmt->execute($arr_ps);
         $result = $stmt->fetchAll();
+        return $result;
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+function db_insert_boards(&$conn, &$arr_param) {
+    try {
+        $sql = " INSERT INTO "
+        ." boards ( "
+        ."    title "
+        ."    , content "
+        ."    , create_at "
+        ."    , weather "
+        ."    , mood "
+        ." ) VALUES " 
+        ." ( "
+        ."    :title "
+        ."    , :content "
+        ."    , :create_at "
+        ."    , :weather "
+        ."    , :mood ) ";
+
+        $arr_ps = [
+            ":title" => $arr_param["title"]
+            , ":content" => $arr_param["content"]
+            , ":create_at" => $arr_param["create_at"]
+            , ":weather" => $arr_param["weather"]
+            , ":mood" => $arr_param["mood"]
+        ];
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
         return $result;
     } catch(Exception $e) {
         echo $e->getMessage();

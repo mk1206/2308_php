@@ -45,13 +45,13 @@ try {
     <section class="section detail-box">
         <a href="/test_board/src/list.php" class="back">돌아가기</a>
         <a href="" class="delete">삭제하기</a>
-        <a href="" class="update">수정하기</a>
+        <a href="/test_board/src/update.php/?id=<?php echo $item["id"]; ?>" class="update">수정하기</a>
     </section>
     <section class="box">
         <div class="div1">
             <span class="create_at"><?php echo $item["Date"]; ?></span>
             <span class="title"><?php echo $item["title"]; ?></span>
-            <img class="mood" src="/test_board/doc/<?php
+            <img class="weather" src="/test_board/doc/<?php
             if($item["weather"] === 0) {
                 echo "sun.png";
             } else if($item["weather"] === 1) {
@@ -62,7 +62,7 @@ try {
                 echo "snow.png";
             }
             ?>"></img>
-            <img class="weather" src="/test_board/doc/<?php
+            <img class="mood" src="/test_board/doc/<?php
             if($item["mood"] === 0) {
                 echo "good.png";
             } else if($item["mood"] === 1) {

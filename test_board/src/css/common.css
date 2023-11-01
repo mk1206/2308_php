@@ -83,12 +83,12 @@ a {
 	float: left;
 }
 
-.weather {
+.mood {
 	float: right;
-	margin-right: 300px;
+	margin-right: 150px;
 }
 
-.mood, .delete, .write-go {
+.weather, .delete, .write-go {
 	float: right;
 }
 
@@ -112,4 +112,37 @@ img {
 
 .cancel, .write-go {
 	font-size: 40px;
+}
+
+input[type = 'date'] {
+	width: 200px;
+	height: 40px;
+	font-size: 30px;
+	background-color: transparent;
+	border: none;
+}
+
+div>input[type = 'text'] {
+	width: 400px;
+	height: 40px;
+	font-size: 30px;
+	background-color: transparent;
+	border: 1px solid rgb(134, 233, 255);;
+}
+
+select {
+	width: 100px;
+	height: 40px;
+	font-size: 30px;
+	background-color: transparent;
+	border: none;
+}
+
+.insert-content {
+	font-size: 30px;
+	width: 1238px;
+	height: 630px;
+	background-color: transparent;
+	border: 1px solid rgb(134, 233, 255);
+	text-align: start;
 }

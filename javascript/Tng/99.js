@@ -21,7 +21,7 @@ function makeImg(data) {
 		const DIV = document.createElement('div');
 		const NEW_ID = document.createElement('div');
 		const NEW_IMG = document.createElement('img');
-		DIV.setAttribute('id', 'box');
+		DIV.setAttribute('id', 'div-box');
 		NEW_ID.setAttribute('id', 'id');
 		NEW_IMG.setAttribute('id', 'img');
 
@@ -47,9 +47,9 @@ function makeImg(data) {
 }
 
 function clear() {
-	const CLEAR_DIV = document.getElementById('box');
-	const CLEAR_ID = document.getElementById('id');
-	const CLEAR_IMG = document.getElementById('img');
+	const CLEAR_DIV = document.querySelectorAll('#div-box');
+	const CLEAR_ID = document.querySelectorAll('#id');
+	const CLEAR_IMG = document.querySelectorAll('#img');
 
 	for(let i = 0; i < CLEAR_DIV.length; i++) {
 		CLEAR_DIV[i].remove();

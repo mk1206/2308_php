@@ -99,3 +99,20 @@ function clear() {
 // 200대 : 정상
 // 300대 : 서버에서 예외처리 됐을 때
 // 400대 : 서버 통신이 안 됐을 때 ( ex) 404 NOT FOUND )
+
+
+// fetch 2번째 아규먼트
+function infinityLoop() {
+	let apiUrl = "http://192.168.0.82:6001/03_insert.php";
+	let init = {
+		method: "POST"
+		, body: {
+			title: "전원돈까스"
+			, content: "먹어라!"
+			, em_id: "2"
+		}
+	};
+	fetch(apiUrl, init)
+	.then(response => console.log(response))
+	.catch(error => console.log(error));
+}
