@@ -35,6 +35,8 @@ function db_select_boards(&$conn, &$arr_month) {
         ." boards "
         ." WHERE "
         ." MONTH(create_at) = :month "
+        ." AND "
+        ." delete_at IS NULL "
         ." ORDER BY create_at ";
 
         $arr_ps = [
@@ -58,7 +60,9 @@ function db_select_month(&$conn, &$arr_month) {
         ." FROM "
         ." boards "
         ." WHERE "
-        ." MONTH(create_at) = :month ";
+        ." MONTH(create_at) = :month "
+        ." AND "
+        ." delete_at IS NULL ";
 
         $arr_ps = [
             ":month" => (int)$arr_month["month"]
@@ -81,7 +85,9 @@ function db_select_detail(&$conn, &$id) {
         ." FROM "
         ." boards "
         ." WHERE "
-        ." id = :id ";
+        ." id = :id "
+        ." AND "
+        ." delete_at IS NULL ";
 
         $arr_ps = [
             ":id" => $id["id"]
@@ -121,6 +127,56 @@ function db_insert_boards(&$conn, &$arr_param) {
             , ":create_at" => $arr_param["create_at"]
             , ":weather" => $arr_param["weather"]
             , ":mood" => $arr_param["mood"]
+        ];
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result;
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+function db_update_boards(&$conn, &$arr_post) {
+    try {
+        $sql = " UPDATE "
+        ." boards "
+        ." SET "
+        ." title = :title "
+        ." , content = :content "
+        ." , weather = :weather "
+        ." , mood = :mood "
+        ." , update_at = NOW() "
+        ." WHERE id = :id ";
+
+        $arr_ps = [
+            ":title" => $arr_post["title"]
+            , ":content" => $arr_post["content"]
+            , ":weather" => $arr_post["weather"]
+            , ":mood" => $arr_post["mood"]
+            , ":id" => $arr_post["id"]
+        ];
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result;
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+function db_delete_boards(&$conn, &$id) {
+    try {
+        $sql = " UPDATE "
+        ." boards "
+        ." SET "
+        ." delete_at = NOW() "
+        ." WHERE id = :id ";
+
+        $arr_ps = [
+            ":id" => $id
         ];
 
         $stmt = $conn->prepare($sql);

@@ -2,6 +2,8 @@
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/test_board/src/");
 require_once(ROOT."lib/lib_db.php");
 
+$http_method = $_SERVER["REQUEST_METHOD"];
+
 try {
 	$conn = null;
 
@@ -9,20 +11,39 @@ try {
 		throw new Exception("DB Error : PDO Instance");
 	}
 
-    if(!isset($_GET["id"]) || $_GET["id"] === "") {
-        throw new Exception("Parameter ERROR : No id");
-    }
+    if($http_method === "GET") {
+        if(!isset($_GET["id"]) || $_GET["id"] === "") {
+            throw new Exception("Parameter ERROR : No id");
+        }
+    
+        $id = $_GET;
+    
+        $result = db_select_detail($conn, $id);
+        if($result === false) {
+            throw new Exception("select_update Error");
+        }
+        $item = $result[0];
+    } else {
+        $id = isset($_POST["id"]) ? $_POST["id"] : "";
 
-    $id = $_GET;
+        $conn->beginTransaction();
+        
+        if(db_delete_boards($conn, $id) === false) {
+            throw new Exception("delete_boards Error");
+        }
 
-    $result = db_select_detail($conn, $id);
-    if($result === false) {
-        throw new Exception("select_detail Error");
+        $conn->commit();
+    
+        header("Location: list.php");
+        exit;
     }
-    $item = $result[0];
 
 } catch(Exception $e) {
+    if($http_method === "POST") {
+        $conn->rollBack();
+    }
     echo $e->getMessage();
+    exit;
 } finally {
     db_destroy_conn($conn);
 }
@@ -30,11 +51,12 @@ try {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/test_board/src/css/common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,11 +64,14 @@ try {
     <title>detail</title>
 </head>
 <body>
-    <section class="section detail-box">
-        <a href="/test_board/src/list.php" class="back">돌아가기</a>
-        <a href="/test_board/src/delete.php/?id=<?php echo $item["id"]; ?>" class="delete">삭제하기</a>
-        <a href="/test_board/src/update.php/?id=<?php echo $item["id"]; ?>" class="update">수정하기</a>
-    </section>
+    <form action="/test_board/src/delete.php" method="post">
+        <section class="section detail-box">
+            <a href="/test_board/src/detail.php/?id=<?php echo $item["id"]; ?>" class="back">취소</a>
+            <span style="color: red;">삭제하면 다시는 복구 못합니다 ㅠㅠ</span>
+            <input type="hidden" name="id" value="<?php echo $item["id"]; ?>">
+            <button type="submit" class="write-go">삭제</button>
+        </section>
+    </form>
     <section class="box">
         <div class="div1">
             <span class="create_at"><?php echo $item["Date"]; ?></span>

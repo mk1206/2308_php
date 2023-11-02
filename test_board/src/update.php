@@ -25,13 +25,24 @@ try {
         }
         $item = $result[0];
     } else {
+        
         $arr_post["id"] = isset($_POST["id"]) ? trim($_POST["id"]) : "";
         $arr_post["title"] = isset($_POST["title"]) ? trim($_POST["title"]) : "";
         $arr_post["content"] = isset($_POST["content"]) ? trim($_POST["content"]) : "";
         $arr_post["weather"] = isset($_POST["weather"]) ? trim($_POST["weather"]) : "";
         $arr_post["mood"] = isset($_POST["mood"]) ? trim($_POST["mood"]) : "";
 
+        $conn->beginTransaction();
         
+        $result = db_update_boards($conn, $arr_post);
+        if($result === false) {
+            throw new Exception("update_boards Error");
+        }
+
+        $conn->commit();
+    
+        header("Location: detail.php/?id=".$arr_post["id"]);
+        exit;
     }
 
 } catch(Exception $e) {
