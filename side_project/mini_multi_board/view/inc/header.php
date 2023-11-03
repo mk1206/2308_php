@@ -13,12 +13,12 @@
 					  게시판
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-					  <li><a class="dropdown-item" href="./free.html">자유게시판</a></li>
-					  <li><a class="dropdown-item" href="./question.html">질문게시판</a></li>
+					  <li><a class="dropdown-item" href="/board/list">자유게시판</a></li>
+					  <li><a class="dropdown-item" href="">질문게시판</a></li>
 					</ul>
 				  </li>
 				</ul>
-				<a href="/user/login" class="nav-link text-light" role="button">로그아웃</a>
+				<a href="/user/logout" class="nav-link text-light" role="button">로그아웃</a>
 				<?php } ?>
 			  </div>
 			</div>

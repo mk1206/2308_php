@@ -26,7 +26,7 @@
 
 	<main>
 		<div class="card">
-			<img src="/view/img/don.png" class="card-img-top" alt="...">
+			<img src="/view/img/don.png" class="card-img-top" alt="..." style="height: 250px">
 			<div class="card-body">
 			  <h5 class="card-title">전원 돈까스</h5>
 			  <p class="card-text">먹어라</p>
@@ -34,33 +34,33 @@
 			</div>
 		</div>
 		<div class="card">
-			<img src="/view/img/don.png" class="card-img-top" alt="...">
+			<img src="/view/img/salad.png" class="card-img-top" alt="..." style="height: 250px">
 			<div class="card-body">
-			  <h5 class="card-title">전원 돈까스</h5>
+			  <h5 class="card-title">샐러드</h5>
+			  <p class="card-text">먹지마라</p>
+			  <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
+			</div>
+		</div>
+		<div class="card">
+			<img src="/view/img/meat.png" class="card-img-top" alt="..." style="height: 250px">
+			<div class="card-body">
+			  <h5 class="card-title">소고기 초밥</h5>
 			  <p class="card-text">먹어라</p>
 			  <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
 			</div>
 		</div>
 		<div class="card">
-			<img src="/view/img/don.png" class="card-img-top" alt="...">
+			<img src="/view/img/pizza.png" class="card-img-top" alt="..." style="height: 250px">
 			<div class="card-body">
-			  <h5 class="card-title">전원 돈까스</h5>
+			  <h5 class="card-title">피자</h5>
 			  <p class="card-text">먹어라</p>
 			  <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
 			</div>
 		</div>
 		<div class="card">
-			<img src="/view/img/don.png" class="card-img-top" alt="...">
+			<img src="/view/img/ramen.png" class="card-img-top" alt="..." style="height: 250px">
 			<div class="card-body">
-			  <h5 class="card-title">전원 돈까스</h5>
-			  <p class="card-text">먹어라</p>
-			  <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
-			</div>
-		</div>
-		<div class="card">
-			<img src="/view/img/don.png" class="card-img-top" alt="...">
-			<div class="card-body">
-			  <h5 class="card-title">전원 돈까스</h5>
+			  <h5 class="card-title">라멘</h5>
 			  <p class="card-text">먹어라</p>
 			  <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
 			</div>

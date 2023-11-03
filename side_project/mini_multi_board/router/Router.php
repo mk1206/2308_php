@@ -28,9 +28,11 @@ class Router {
 				new UserController("loginGet"); // 이 구문이 UserController의 construct를 실행시킴
 			} else {
 				// 해당 컨트롤러 호출
+				new UserController("loginPost");
 			}
 		} else if ($url === "user/logout") {
 			if($method === "GET") {
+				new UserController("logoutGet");
 			}
 		} else if ($url === "user/regist") {
 			if($method === "GET") {
