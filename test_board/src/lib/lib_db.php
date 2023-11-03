@@ -3,7 +3,7 @@
 function my_db_conn( &$conn ) {
     $db_host    = "localhost";
     $db_user    = "root";
-    $db_pw      = "php504";
+    $db_pw      = "1234";
     $db_name    = "test_board";
     $db_charset = "utf8mb4";
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
@@ -30,14 +30,14 @@ function db_destroy_conn(&$conn) {
 function db_select_boards(&$conn, &$arr_month) {
     try {
         $sql = " SELECT "
-        ." id, DAYOFMONTH(create_at) as create_at, mood "
+        ." id, DAYOFMONTH(select_at) as select_at, mood "
         ." FROM "
         ." boards "
         ." WHERE "
-        ." MONTH(create_at) = :month "
+        ." MONTH(select_at) = :month "
         ." AND "
         ." delete_at IS NULL "
-        ." ORDER BY create_at ";
+        ." ORDER BY select_at ";
 
         $arr_ps = [
             ":month" => (int)$arr_month["month"]
@@ -56,11 +56,11 @@ function db_select_boards(&$conn, &$arr_month) {
 function db_select_month(&$conn, &$arr_month) {
     try {
         $sql = " SELECT "
-        ." month(create_at) as month "
+        ." month(select_at) as month "
         ." FROM "
         ." boards "
         ." WHERE "
-        ." MONTH(create_at) = :month "
+        ." MONTH(select_at) = :month "
         ." AND "
         ." delete_at IS NULL ";
 
@@ -81,7 +81,7 @@ function db_select_month(&$conn, &$arr_month) {
 function db_select_detail(&$conn, &$id) {
     try {
         $sql = " SELECT "
-        ." id, title, content, Date(create_at) AS Date, weather, mood "
+        ." id, title, content, Date(select_at) AS Date, weather, mood "
         ." FROM "
         ." boards "
         ." WHERE "
@@ -103,6 +103,16 @@ function db_select_detail(&$conn, &$id) {
     }
 }
 
+function db_insert_chk(&$conn, &$arr_param) {
+    try {
+        $sql = " SELECT "
+        ." delete_at "
+        FROM boards
+        WHERE id = 13
+        AND delete_at IS NOT NULL; "
+    }
+}
+
 function db_insert_boards(&$conn, &$arr_param) {
     try {
         $sql = " INSERT INTO "
@@ -110,21 +120,21 @@ function db_insert_boards(&$conn, &$arr_param) {
         ."    id "
         ."    title "
         ."    , content "
-        ."    , create_at "
+        ."    , select_at "
         ."    , weather "
         ."    , mood "
         ." ) VALUES " 
         ." ( "
         ."    :title "
         ."    , :content "
-        ."    , :create_at "
+        ."    , :select_at "
         ."    , :weather "
         ."    , :mood ) ";
 
         $arr_ps = [
             ":title" => $arr_param["title"]
             , ":content" => $arr_param["content"]
-            , ":create_at" => $arr_param["create_at"]
+            , ":select_at" => $arr_param["select_at"]
             , ":weather" => $arr_param["weather"]
             , ":mood" => $arr_param["mood"]
         ];

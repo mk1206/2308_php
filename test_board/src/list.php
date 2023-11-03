@@ -56,18 +56,18 @@ try {
 	<section class="section2">
 		<?php foreach($result as $item) { ?>
 		<a class="detail_go" href="/test_board/src/detail.php/?id=<?php echo $item["id"]; ?>">
-			<span><?php echo $item["create_at"]; ?>일</span>
+			<span><?php echo $item["select_at"]; ?>일</span>
 			<br>
 			<img src="/test_board/doc/<?php
-			if($item["mood"] === 0) {
+			if($item["mood"] === "0") {
 				echo "good.png";
-			} else if($item["mood"] === 1) {
+			} else if($item["mood"] === "1") {
 				echo "sad.png";
-			} else if($item["mood"] === 2) {
+			} else if($item["mood"] === "2") {
 				echo "angry.png";
-			} else if($item["mood"] === 3) {
+			} else if($item["mood"] === "3") {
 				echo "tired.png";
-			} else if($item["mood"] === 4) {
+			} else if($item["mood"] === "4") {
 				echo "soso.png";
 			}
 			?>">

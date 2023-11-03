@@ -1,7 +1,7 @@
 INSERT INTO boards (
 	title
 	, content
-	, create_at
+	, select_at
 	, weather
 	, mood
 )

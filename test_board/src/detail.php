@@ -49,29 +49,29 @@ try {
     </section>
     <section class="box">
         <div class="div1">
-            <span class="create_at"><?php echo $item["Date"]; ?></span>
+            <span class="select_at"><?php echo $item["Date"]; ?></span>
             <span class="title"><?php echo $item["title"]; ?></span>
             <img class="weather" src="/test_board/doc/<?php
-            if($item["weather"] === 0) {
+            if($item["weather"] === "0") {
                 echo "sun.png";
-            } else if($item["weather"] === 1) {
+            } else if($item["weather"] === "1") {
                 echo "rain.png";
-            } else if($item["weather"] === 2) {
+            } else if($item["weather"] === "2") {
                 echo "cloud.png";
-            } else if($item["weather"] === 3) {
+            } else if($item["weather"] === "3") {
                 echo "snow.png";
             }
             ?>"></img>
             <img class="mood" src="/test_board/doc/<?php
-            if($item["mood"] === 0) {
+            if($item["mood"] === "0") {
                 echo "good.png";
-            } else if($item["mood"] === 1) {
+            } else if($item["mood"] === "1") {
                 echo "sad.png";
-            } else if($item["mood"] === 2) {
+            } else if($item["mood"] === "2") {
                 echo "angry.png";
-            } else if($item["mood"] === 3) {
+            } else if($item["mood"] === "3") {
                 echo "tired.png";
-            } else if($item["mood"] === 4) {
+            } else if($item["mood"] === "4") {
                 echo "soso.png";
             }
             ?>"></img>

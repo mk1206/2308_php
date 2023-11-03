@@ -15,7 +15,7 @@ if($http_method === "POST") {
     
         $arr_param["title"] = isset($_POST["title"]) ? trim($_POST["title"]) : "";
         $arr_param["content"] = isset($_POST["content"]) ? trim($_POST["content"]) : "";
-        $arr_param["create_at"] = isset($_POST["create_at"]) ? trim($_POST["create_at"]) : "";
+        $arr_param["select_at"] = isset($_POST["select_at"]) ? trim($_POST["select_at"]) : "";
         $arr_param["weather"] = isset($_POST["weather"]) ? trim($_POST["weather"]) : "";
         $arr_param["mood"] = isset($_POST["mood"]) ? trim($_POST["mood"]) : "";
     
@@ -62,7 +62,7 @@ if($http_method === "POST") {
         </section>
         <section class="box">
             <div class="div1">
-                <input type="date" name="create_at" class="create_at">
+                <input type="date" name="select_at" class="select_at">
                 <input type="text" name="title" placeholder="제목" class="title">
                 <select name="weather" class="weather">
                     <option value="0">맑음</option>
