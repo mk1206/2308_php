@@ -15,7 +15,7 @@ try {
 	
 	$result_month = db_select_month($conn, $arr_month);
 	if(!$result_month) {
-		throw new Exception("DB select_month Error");
+		throw new Exception("현재 달에는 일기가 없습니다 ㅠㅠ");
 	}
 	
 	$result = db_select_boards($conn, $arr_month);
@@ -24,7 +24,7 @@ try {
 	}
 
 } catch(Exception $e) {
-    echo $e->getMessage();
+    header("Location: error.php/?err_msg={$e->getMessage()}");
 } finally {
     db_destroy_conn($conn);
 }

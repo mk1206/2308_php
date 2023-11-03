@@ -22,7 +22,7 @@ try {
     $item = $result[0];
 
 } catch(Exception $e) {
-    echo $e->getMessage();
+    header("Location: error.php/?err_msg={$e->getMessage()}");
 } finally {
     db_destroy_conn($conn);
 }

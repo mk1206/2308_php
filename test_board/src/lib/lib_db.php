@@ -107,9 +107,24 @@ function db_insert_chk(&$conn, &$arr_param) {
     try {
         $sql = " SELECT "
         ." delete_at "
-        FROM boards
-        WHERE id = 13
-        AND delete_at IS NOT NULL; "
+        . " FROM "
+        ." boards "
+        ." WHERE "
+        ." select_at = :select_at "
+        ." AND "
+        ." delete_at IS NULL ";
+
+        $arr_ps = [
+            ":select_at" => $arr_param["select_at"]
+        ];
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result;
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return false;
     }
 }
 
@@ -117,7 +132,6 @@ function db_insert_boards(&$conn, &$arr_param) {
     try {
         $sql = " INSERT INTO "
         ." boards ( "
-        ."    id "
         ."    title "
         ."    , content "
         ."    , select_at "

@@ -26,6 +26,10 @@ try {
     } else {
         $id = isset($_POST["id"]) ? $_POST["id"] : "";
 
+        if($id === "") {
+            $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
+        }
+
         $conn->beginTransaction();
         
         if(db_delete_boards($conn, $id) === false) {
@@ -42,8 +46,8 @@ try {
     if($http_method === "POST") {
         $conn->rollBack();
     }
-    echo $e->getMessage();
-    exit;
+    header("Location: error.php/?err_msg={$e->getMessage()}");
+    exit();
 } finally {
     db_destroy_conn($conn);
 }

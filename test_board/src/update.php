@@ -1,9 +1,11 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/test_board/src/");
+define("ERROR_MSG_PARAM", "%s은 필수 입력 사항입니다.");
 require_once(ROOT."lib/lib_db.php");
 
 $http_method = $_SERVER["REQUEST_METHOD"];
 $arr_post = [];
+$arr_err_msg = [];
 
 try {
 	$conn = null;
@@ -19,11 +21,6 @@ try {
     
         $id = $_GET;
     
-        $result = db_select_detail($conn, $id);
-        if($result === false) {
-            throw new Exception("select_update Error");
-        }
-        $item = $result[0];
     } else {
         
         $arr_post["id"] = isset($_POST["id"]) ? trim($_POST["id"]) : "";
@@ -32,25 +29,44 @@ try {
         $arr_post["weather"] = isset($_POST["weather"]) ? trim($_POST["weather"]) : "";
         $arr_post["mood"] = isset($_POST["mood"]) ? trim($_POST["mood"]) : "";
 
-        $conn->beginTransaction();
-        
-        $result = db_update_boards($conn, $arr_post);
-        if($result === false) {
-            throw new Exception("update_boards Error");
+        if($arr_post["title"] === "") {
+            $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
+        }
+        if($arr_post["content"] === "") {
+            $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
         }
 
-        $conn->commit();
+        if(count($arr_err_msg) === 0) {
+        
+            $result = db_update_boards($conn, $arr_post);
+            if($result === false) {
+                throw new Exception("update_boards Error");
+            }
+        
+            header("Location: detail.php/?id=".$arr_post["id"]);
+            exit();
+		}
+
+        $id["id"] = $arr_post["id"];
+    }
+
+    $result = db_select_detail($conn, $id);
+    if($result === false) {
+        throw new Exception("select_update Error");
+    }
     
-        header("Location: detail.php/?id=".$arr_post["id"]);
-        exit;
+    $item = $result[0];
+
+    if(isset($arr_post["title"]) || isset($arr_post["content"]) || isset($arr_post["weather"]) || isset($arr_post["mood"])) {
+		$item["title"] = $arr_post["title"];
+        $item["content"] = $arr_post["content"];
+        $item["weather"] = $arr_post["weather"];
+        $item["mood"] = $arr_post["mood"];
     }
 
 } catch(Exception $e) {
-    if($http_method === "POST") {
-        $conn->rollBack();
-    }
     echo $e->getMessage();
-    exit;
+    exit();
 } finally {
     db_destroy_conn($conn);
 }
@@ -71,6 +87,13 @@ try {
 <body>
 	<form action="/test_board/src/update.php" method="post">
         <section class="section">
+        <?
+        foreach($arr_err_msg as $val) {
+        ?>
+            <p><?php echo $val ?></p>
+        <?php
+        }
+        ?>
             <a href="/test_board/src/detail.php/?id=<?php echo $item["id"]; ?>" class="cancel">취소</a>
             <button type="submit" class="write-go">확인</button>
         </section>
