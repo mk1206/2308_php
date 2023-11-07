@@ -27,12 +27,15 @@
 	<main>
 		<?php 
 			foreach($this->arrBoardInfo as $item) { ?>
-		<div class="card">
+		<div class="card" id="card<?php echo $item['id']; ?>">
 			<img src="<?php echo isset($item["b_img"]) ? "/"._PATH_USERIMG.$item["b_img"] : ""; ?>" class="card-img-top" alt="이미지 없음">
 			<div class="card-body">
 			  <h5 class="card-title"><?php echo $item["b_title"]; ?></h5>
 			  <p class="card-text"><?php echo mb_substr($item["b_content"], 0, 10)."..."; ?></p>
-			  <button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
+			  <!-- <button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button> -->
+			  <button
+			  class="btn btn-primary"
+			  onclick="openDetail(<?php echo $item['id'] ?>); return false;">상세</button>
 			</div>
 		</div>
 		<?php } ?>
@@ -66,32 +69,19 @@
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">개발자 입니다.</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<h5 class="modal-title" id="b_title">개발자 입니다.</h5>
+				<button type="button" onclick="closeDetailModal(); return false;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<span>
-						에스프레소에 뜨거운 물을 희석시켜 만든 음료.
-
-						아메리카노라고 줄여서 불리지만 정확한 명칭은 카페 아메리카노(Caffé Americano)이다. 이탈리아어인 'Caffè Americano'를 영역(英譯)하면 'American coffee'이지만 영어로 쓰이는 경우는 없다.
-	
-						단어를 해석하자면 '미국식 커피'로, 말 그대로 '유럽식 커피에 비해 옅은 농도인 미국식 커피 스타일'을 일컫는 말이다. 다만 후술되어있듯 미국 현지에서는 아메리카노를 그닥 즐겨 마시지 않는다. 현재 미국에서 가장 대중적인 커피 스타일은 카페라테이다.
-	
-						에스프레소보다는 농도가 연하고 양이 많다는 이유로 카페 룽고(Caffé Lungo; 줄여서 룽고)와 혼동할 수 있지만, 서로 다른 커피이다. 자세한 내용은 문서 참조.
-	
-						한국의 카페에서 자주 접할 수 있는 메뉴고 선호층도 가장 두터운 편이지만, 맛에 대해서는 호불호가 굉장히 크게 나뉘는 편이다.[2] 좋아하는 사람들은 안 마시면 금단증상까지 호소할 정도지만, 설탕이나 우유 등이 들어간 달짝지근한 맛에 익숙하거나 아니면 단 것을 싫어해도 커피 또한 좋아하지 않는 사람들은 그냥 물이나 주스를 마시지 무슨 이런 쓴 맹물 커피를 돈 주고 사먹냐고 생각할 수도 있는 맛이다. 또한 블랙 커피 특성상 원두빨과 바리스타 실력을 타는 것도 주의. 최악의 경우에는 커피향과 풍미는 없고 그냥 탄내와 탄맛이 나는 갈색 괴액체가 생성되어 버린다.[3]
-	
-						아메리카노와 브루잉 커피[4]는 비슷한 농도를 보이지만 그 특성이 완전히 다르다. 또한 물을 첨가했을 때 생두 본연의 맛이 그대로 느껴지기 위해서는 일반적인 에스프레소, 라떼용 에스프레소와 세팅값부터 다르게 잡아야 한다. 따라서 '물 탄 에스프레소'란 정의에서 느껴지는 인상과 달리, 맛있는 에스프레소에 물 탄다고 맛있는 아메리카노가 되는 게 아니며, 맛있는 아메리카노의 원액을 그대로 먹는다고 맛있는 에스프레소인 것도 아니다.[5]
-	
-						요약하자면, 이론상으론 물 탄 에스프레소가 아메리카노일지는 몰라도, 요리라는 관점에서 보면 아메리카노와 물 탄 에스프레소, 그리고 에스프레소와 아메리카노 원액은 각각 서로 다른 것이다.
-	
-						아메리카노의 농도는 에스프레소의 '샷' 수와, 더해지는 물의 양에 따라 달라진다. 물의 양은 취향 따라 원두 따라 다 다르다. 에스프레소와 1:2 비율로 넣으라는 이야기부터 에스프레소 30ml에 물 160~250ml를 쓰라는 등 천차만별.
-	
-						아메리카노 위에 황갈색의 옅은 거품 같은 것이 살짝 떠 있는 경우를 종종 보게 된다. 이는 에스프레소의 크레마가 물에 녹다 만 흔적이다</span>
-					<img src="/view/img/don.png" class="card-img-top">
+				<p>작성일: <span id="created_at">작성</span></p>
+				<p>수정일: <span id="updated_at">수정</span></p>
+				<br>
+					<span id="b_content">
+						ㅁ</span>
+					<img src="" class="card-img-top" id="b_img">
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-secondary" onclick="closeDetailModal(); return false;" data-bs-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
