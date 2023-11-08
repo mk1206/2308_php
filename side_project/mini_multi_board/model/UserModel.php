@@ -56,4 +56,27 @@ class UserModel extends ParentsModel {
 			exit();
 		}
 	}
+
+	public function userChkInfo($inputData) {
+		$sql = 
+		" SELECT "
+		." count(u_id) u_id "
+		." FROM user "
+		." WHERE "
+		." u_id = :u_id ";
+
+		$prepare = [
+			":u_id" => $inputData["u_id"]
+		];
+
+		try {
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute($prepare);
+			$result = $stmt->fetchAll();
+			return $result;
+		} catch(Exception $e) {
+			echo "UserModel-PostUserInfo Error : ".$e->getMessage();
+			exit();
+		}
+	}
 }

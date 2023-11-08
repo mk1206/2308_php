@@ -49,3 +49,35 @@ function closeDetailModal() {
 	MODAL.classList.remove('show');
 	MODAL.style = 'display: none;';
 }
+
+function idChk() {
+	const USERID = document.getElementById('u_id').value;
+	const IDCHK = document.getElementById('idChk');
+	const ERROR = document.getElementById('errorMsg');
+	const URL = '/user/idchk?u_id='+USERID;
+	ERROR.innerHTML = "";
+
+	// POST로 하는 방법
+	// const URL = '/user/idchk
+	// const formData = new FormData();
+	// formData.append("u_id", INPUT_ID.value);
+
+	// const HEADER = {
+	// 	method: "POST"
+	// 	, body: formData
+	// };
+
+	fetch(URL)
+	.then(response => response.json())
+	.then(data => {
+		if(data.errflg === "1") {
+			IDCHK.innerHTML = '사용 불가';
+			IDCHK.classList = 'text-danger';
+		} else {
+			IDCHK.innerHTML = '사용 가능';
+			IDCHK.classList = 'text-success';
+		}
+		ERROR.innerHTML = data.msg;
+	})
+	.catch(error => console.log(error))
+}
