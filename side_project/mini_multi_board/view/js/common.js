@@ -24,13 +24,23 @@ function openDetail(id) {
 		const IMG = document.getElementById('b_img');
 		const CREATEDAT = document.getElementById('created_at');
 		const UPDATEAT = document.getElementById('updated_at');
+		// const DELETEID = document.getElementById('delete-id');
+		const BTNDELETE = document.getElementById('btn-delete');
+		const DEL_INPUT = document.getElementById('del_id');
 
 		TITLE.innerHTML = data.data.b_title;
 		CONTENT.innerHTML = data.data.b_content;
 		IMG.setAttribute('src', data.data.b_img);
 		CREATEDAT.innerHTML = data.data.created_at;
 		UPDATEAT.innerHTML = data.data.updated_at;
+		// DELETEID.value = data.data.id;
+		DEL_INPUT.value = data.data.id;
 
+		if(data.delflg === "1") {
+			BTNDELETE.style.display = 'block';
+		} else {
+			BTNDELETE.style.display = 'none';
+		}
 		// 모달 오픈
 		openModal();
 	})
@@ -78,6 +88,30 @@ function idChk() {
 			IDCHK.classList = 'text-success';
 		}
 		ERROR.innerHTML = data.msg;
+	})
+	.catch(error => console.log(error))
+}
+
+// 삭제처리
+function deleteCard() {
+	const B_PK = document.getElementById('del_id').value;
+	const URL = '/board/remove?id='+B_PK;
+
+	fetch(URL)
+	.then(response => response.json())
+	.then(data => {
+		if(data.errflg === "0") {
+			// 모달 닫기
+			closeDetailModal();
+
+			// 카드 삭제
+			const MAIN = document.querySelector('main');
+			const CARD_NAME = '#card' + data.id;
+			const DEL_CARD = document.querySelector(CARD_NAME);
+			MAIN.removeChild(DEL_CARD)
+		} else {
+			alert(data.msg);
+		}
 	})
 	.catch(error => console.log(error))
 }

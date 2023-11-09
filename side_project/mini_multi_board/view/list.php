@@ -25,7 +25,7 @@
 	</div> -->
 
 	<main>
-		<?php 
+		<?php
 			foreach($this->arrBoardInfo as $item) { ?>
 		<div class="card" id="card<?php echo $item['id']; ?>">
 			<img src="<?php echo isset($item["b_img"]) ? "/"._PATH_USERIMG.$item["b_img"] : ""; ?>" class="card-img-top" alt="이미지 없음">
@@ -80,8 +80,16 @@
 						ㅁ</span>
 					<img src="" class="card-img-top" id="b_img">
 				</div>
-				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" onclick="closeDetailModal(); return false;" data-bs-dismiss="modal">닫기</button>
+				<div class="modal-footer justify-content-between">
+					<!-- get으로 보내는 방법 -->
+					<!-- <form action="delete" method="GET">
+						<input type="hidden" name="b_type" value="<?php echo $this->boardType; ?>">
+						<input id="delete-id" type="hidden" name="id">
+						<button id="btn-delete" type="submit" class="btn btn-secondary" data-bs-dismiss="modal">삭제</button>
+					</form> -->
+					<input type="hidden" id="del_id" value=""></input>
+					<button id="btn-delete" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deleteCard(); return false;">삭제</button>
+					<button type="button" class="btn btn-secondary" onclick="closeDetailModal(); return false;" data-bs-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>

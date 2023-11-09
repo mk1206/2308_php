@@ -79,4 +79,49 @@ class BoardModel extends ParentsModel {
 			exit();
 		}
 	}
+
+	// public function getBoardDelete($id) {
+	// 	$sql = 
+	// 	" UPDATE board "
+	// 	." SET "
+	// 	." deleted_at = NOW() "
+	// 	." WHERE id = :id ";
+
+	// 	$prepare = [
+	// 		":id" => $id
+	// 	];
+
+	// 	try {
+	// 		$stmt = $this->conn->prepare($sql);
+	// 		$result = $stmt->execute($prepare);
+	// 		return $result;
+	// 	} catch(Exception $e) {
+	// 		echo "BoardModel->getBoardDelete Error: ".$e->getMessage();
+	// 		exit();
+	// 	}
+	// }
+	
+	public function removeBoardCard($arrDeleteBoardInfo) {
+		$sql = 
+		" UPDATE board "
+		." SET "
+		." deleted_at = NOW() "
+		." WHERE id = :id "
+		." AND u_pk = :u_pk ";
+
+		$prepare = [
+			":id" => $arrDeleteBoardInfo["id"]
+			, ":u_pk" => $arrDeleteBoardInfo["u_pk"]
+		];
+
+		try {
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute($prepare);
+			$result = $stmt->rowCount();
+			return $result;
+		} catch(Exception $e) {
+			echo "BoardModel->removeBoardCard Error: ".$e->getMessage();
+			exit();
+		}
+	}
 }

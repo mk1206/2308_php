@@ -58,6 +58,15 @@ class Router {
 			if($method === "GET") {
 				new UserController("idchkGet");
 			}
+		// } else if($url === "board/delete") {
+		// 	if($method === "GET") {
+		// 		new BoardController("deleteGet");
+		// 	}
+		// }
+		} else if($url === "board/remove"){
+			if($method === "GET") {
+				new BoardController("removeGet");
+			}
 		}
 
 		echo "이상한 URL : ".$url;
