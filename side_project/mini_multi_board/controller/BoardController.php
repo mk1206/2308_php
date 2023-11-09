@@ -162,5 +162,6 @@ class BoardController extends ParentsController {
 		header('Content-type: application/json');
 		echo $response;
 		exit();
+		
 	}
 }
