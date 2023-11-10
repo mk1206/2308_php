@@ -46,7 +46,7 @@ class BoardController extends ParentsController {
 		$b_type = isset($_POST["b_type"]) ? $_POST["b_type"] : "";
 		$b_title = isset($_POST["b_title"]) ? $_POST["b_title"] : "";
 		$b_content = isset($_POST["b_content"]) ? $_POST["b_content"] : "";
-		$b_img = isset($_FILES["b_img"]["name"]) ? $_FILES["b_img"]["name"] : "";
+		$b_img = $_FILES["b_img"]["name"] !== "" ? $_FILES["b_img"]["name"] : null;
 
 		$arrAddBoardInfo = [
 			"u_pk" => $_SESSION["u_pk"]
