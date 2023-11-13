@@ -132,3 +132,10 @@ root/
 		POST 	http://localhost/members		:  	회원 정보 리소스 생성
 		PUT  	http://localhost/members/1  	:  	1번 회원 정보 수정
 		DELETE 	http://localhost/members/1		: 	1번 회원 정보 삭제
+
+
+model => DB 연결
+
+migrate => DDL 관리
+factory => 대량의 데이터 생성
+seeders => 기본 데이터 생성
