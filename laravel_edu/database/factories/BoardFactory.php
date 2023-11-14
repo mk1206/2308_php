@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BoardFactory extends Factory
 {
+    // 팩토리 생성 : php artisan make:factory 팩토리명 --model=모델명
     /**
      * Define the model's default state.
      *
