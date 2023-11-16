@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class UserController extends Controller
@@ -21,17 +21,18 @@ class UserController extends Controller
     }
 
     public function loginpost(Request $request) {
-        $validator = Validator::make(
-            $request->only('email', 'password')
-            , [
-                'email'     => 'required|email|max:50'
-                , 'password'=> 'required'
-            ]
-        );
+        // 231116 middleward로 이관
+        // $validator = Validator::make(
+        //     $request->only('email', 'password')
+        //     , [
+        //         'email'     => 'required|email|max:50'
+        //         , 'password'=> 'required'
+        //     ]
+        // );
 
-        if($validator->fails()){
-            return view('login')->withErrors($validator->errors());
-        }
+        // if($validator->fails()){
+        //     return view('login')->withErrors($validator->errors());
+        // }
 
         // 유저 정보 습득
         $result = User::where('email', $request->email)->first();
@@ -63,20 +64,21 @@ class UserController extends Controller
     }
 
     public function registrationpost(Request $request) {
-        // 유효성 검사
-        $validator = Validator::make(
-            $request->only('email', 'password', 'passwordchk', 'name')
-            , [
-                'email'     => 'required|email|max:50'
-                , 'name'    => 'required|regex:/^[a-zA-Z가-힣]+$/|min:2|max:50'
-                , 'password'=> 'required|same:passwordchk'
-            ]
-        );
+        // 231116 middleward로 이관
+        // // 유효성 검사
+        // $validator = Validator::make(
+        //     $request->only('email', 'password', 'passwordchk', 'name')
+        //     , [
+        //         'email'     => 'required|email|max:50'
+        //         , 'name'    => 'required|regex:/^[a-zA-Z가-힣]+$/|min:2|max:50'
+        //         , 'password'=> 'required|same:passwordchk'
+        //     ]
+        // );
 
-        // 유효성 검사 실패 시ㄴ (호)처리
-        if($validator->fails()){
-            return view('registration')->withErrors($validator->errors());
-        }
+        // // 유효성 검사 실패 시ㄴ (호)처리
+        // if($validator->fails()){
+        //     return view('registration')->withErrors($validator->errors());
+        // }
 
         // 데이터 베이스에 저장할 데이터 획득
         $data = $request->only('email', 'password', 'name');
