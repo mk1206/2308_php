@@ -15,9 +15,10 @@
           <p class="card-text">조회수: {{$data->b_hits}}</p>
           <p class="card-text">생성일: {{$data->created_at}}</p>
           <p class="card-text">수정일: {{$data->updated_at}}</p>
+          <a class="btn btn-secondary" href="{{route('board.index')}}">돌아가기</a>
+          <a class="btn btn-secondary" href="{{route('board.edit', ['board' => $data->b_id])}}">수정</a>
+          <button class="btn btn-secondary float-end" type="submit">삭제</button>
         </div>
-        <a href="{{route('board.index')}}">돌아가기</a>
-        <button type="submit">삭제</button>
     </div>
   </form>
 </main>

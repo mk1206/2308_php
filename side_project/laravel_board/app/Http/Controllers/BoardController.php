@@ -93,7 +93,8 @@ class BoardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $result = Board::find($id);
+        return view('update')->with('data', $result);
     }
 
     /**
@@ -105,7 +106,15 @@ class BoardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = Board::find($id);
+        $arrInputData = $request->only('b_title', 'b_content');
+        $result->update($arrInputData);
+
+        // $result->b_title = $request->b_title;
+        // $result->b_content = $request->b_content;
+        // $result->save();
+
+        return redirect()->route('board.show', ['board' => $id]);
     }
 
     /**
