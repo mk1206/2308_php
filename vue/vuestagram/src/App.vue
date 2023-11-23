@@ -18,7 +18,7 @@
   <ContainerComponent></ContainerComponent>
 
   <!-- 더보기 버튼 -->
-  <button @click="showBoard()">더보기</button>
+  <button v-if="$store.state.flgBtnMoreView && $store.state.flgTabUI === 0" id="btn" @click="showBoard()">더보기</button>
   
   <!-- 푸터 -->
   <div class="footer">
@@ -59,6 +59,7 @@ export default {
       this.$store.dispatch('actionPostBoardAdd');
     },
 
+    // 더보기 버튼
     showBoard() {
       this.$store.dispatch('actionGetBoardShow');
     }
