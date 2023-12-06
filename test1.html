@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>부위 선택하기</title>
+  <style>
+    /* 선택된 부위의 스타일 */
+    .selected {
+      fill: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<svg width="400" height="400">
+  <!-- 각 부위를 표현하는 요소들 -->
+  <circle id="head" cx="200" cy="100" r="30" />
+  <rect id="torso" x="180" y="120" width="40" height="80" />
+  <rect id="leftArm" x="150" y="120" width="30" height="10" />
+  <rect id="rightArm" x="220" y="120" width="30" height="10" />
+  <rect id="leftLeg" x="185" y="200" width="10" height="40" />
+  <rect id="rightLeg" x="205" y="200" width="10" height="40" />
+</svg>
+
+<script>
+  // 각 부위의 요소를 가져와서 이벤트 리스너를 추가합니다.
+  const parts = document.querySelectorAll('circle, rect');
+  
+  parts.forEach(part => {
+    part.addEventListener('click', () => {
+      // 선택된 부위의 클래스를 변경하여 스타일을 적용합니다.
+      parts.forEach(p => p.classList.remove('selected'));
+      part.classList.add('selected');
+      
+      // 선택된 부위의 ID를 콘솔에 출력합니다.
+      console.log('선택된 부위:', part.id);
+    });
+  });
+</script>
+
+</body>
+</html>
