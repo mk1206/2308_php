@@ -10,7 +10,6 @@ use App\Exceptions\MyDBException;
 use App\Http\Utils\TokenUtil;
 use App\Models\Token;
 use App\Models\User;
-use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -46,24 +45,64 @@ class AuthController extends Controller
         // 토큰 생성
         list($accessToken, $refreshToken) = $this->tokenDI->createTokens($userInfo);
 
-        // 리플래쉬 토큰 DB 저장
-        // list($header, $payload, $signature) = $this->tokenDI->explodeToken($refreshToken);
-        $ext = Carbon::createFromTimestamp($this->tokenDI->getPayloadValueTokey($refreshToken, 'ext'));
+        // 리프래쉬 토큰 저장
+        $this->tokenDI->upsertRefreshToken($refreshToken);
 
-        try {
-            DB::beginTransaction();
-            Token::updateOrInsert(
-                ['u_pk' => $this->tokenDI->getPayloadValueTokey($refreshToken, 'upk')]
-                , [
-                    't_rt' => $refreshToken
-                    , 't_ext' => $ext->format('Y-m-d H:i:s')
-                ]
-            );
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception('E80');
+        // 리턴
+        return response()->json([
+            'access_token' => $accessToken
+        ], 200)->cookie('refresh_token', $refreshToken, env('TOKEN_EXP_REFRESH'));
+    }
+
+    /**
+     * 엑세스 토큰 재발급
+     * 
+     * @param Illuminate\Http\Request $request 리퀘스트 객체
+     * @return string json 엑세스토큰, 쿠키 httponly 리플래쉬토큰
+     */
+    public function reisstoken(Request $request) {
+        // 리프래쉬 토큰 획득
+        $cookierefreshToken = $request->cookie('refresh_token');
+
+        // 리프래쉬 토큰 체크
+        $this->tokenDI->chkToken($cookierefreshToken);
+        
+        //페이로드에서 u_pk 획득
+        $u_pk = $this->tokenDI->getPayloadValueTokey($cookierefreshToken, 'upk');
+
+        // DB 유저정보 획득
+        $userInfo = User::where('u_pk', $u_pk)->first();
+
+        // 유저정보 획득 체크
+        if(is_null($userInfo)) {
+            throw new Exception('E20');
         }
+
+        // DB에 저장된 리프래쉬 토큰 검색
+        $tokenInfo = Token::select('t_rt', 't_ext')
+                        ->where('u_pk', $u_pk)
+                        ->first();
+
+        // 토큰 정보 획득 체크
+        if(is_null($tokenInfo)) {
+            throw new Exception('E04');
+        }
+
+        // 토큰 유효기간 체크
+        if(strtotime($tokenInfo->t_ext) < time()) {
+            throw new Exception('E02');
+        }
+
+        // 토큰 일치 체크
+        if($cookierefreshToken !== $tokenInfo->t_rt) {
+            throw new Exception('E03');
+        }
+
+        // 토큰을 새로 생성
+        list($accessToken, $refreshToken) = $this->tokenDI->createTokens($userInfo);
+
+        // 리프래쉬 토큰 저장
+        $this->tokenDI->upsertRefreshToken($refreshToken);
 
         // 리턴
         return response()->json([
